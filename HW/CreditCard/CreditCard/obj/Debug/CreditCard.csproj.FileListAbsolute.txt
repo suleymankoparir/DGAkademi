@@ -1,0 +1,8 @@
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\bin\Debug\CreditCard.exe.config
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\bin\Debug\CreditCard.exe
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\bin\Debug\CreditCard.pdb
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\obj\Debug\CreditCard.csproj.AssemblyReference.cache
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\obj\Debug\CreditCard.csproj.SuggestedBindingRedirects.cache
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\obj\Debug\CreditCard.csproj.CoreCompileInputs.cache
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\obj\Debug\CreditCard.exe
+C:\Users\suley\Desktop\DGAkademi\HW\CreditCard\CreditCard\obj\Debug\CreditCard.pdb

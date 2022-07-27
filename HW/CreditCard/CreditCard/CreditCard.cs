@@ -14,10 +14,10 @@ namespace CreditCard
         private string number;
         private string expireDate;
         private string ccv;
-        public string Number { get; set; }
-        public string ExpireDate { get; set; }
-        public string Ccv { get; set; }
-        public string HolderName { get; set; }
+        public string Number { get { return number; } }
+        public string ExpireDate { get { return expireDate; }  }
+        public string Ccv { get { return ccv; }  }
+        public string HolderName { get { return holderName; }  }
         public CreditCard(string holderName, string number, string expireDate, string ccv)
         {
             this.holderName = holderName;

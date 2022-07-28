@@ -4,8 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using W_01.Context;
-using W_01.Models;
+using W_01.Core.DTOs;
+using W_01.Core.Models;
+using W_01.Core.Services;
 
 namespace W_01.Controllers
 {
@@ -14,10 +15,12 @@ namespace W_01.Controllers
     public class UserController : ControllerBase
     {
         private IConfiguration _config;
+        private readonly IService<User> _service;
 
-        public UserController(IConfiguration config)
+        public UserController(IConfiguration config, IService<User> service)
         {
             _config = config;
+            _service = service;
         }
         [AllowAnonymous]
         [HttpPost]
@@ -38,7 +41,6 @@ namespace W_01.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier,user.UserName),
-                new Claim(ClaimTypes.Role,user.Role)
             };
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
@@ -51,7 +53,7 @@ namespace W_01.Controllers
 
         private User Authenticate(UserDto userDto)
         {
-            var currentUser = UserContext.Users.FirstOrDefault(x => x.UserName == userDto.UserName && x.Password == userDto.Password);
+            var currentUser = _service.Where(x => x.UserName == userDto.UserName && x.Password == userDto.Password).SingleOrDefault();
             if (currentUser != null)
             {
                 return currentUser;
@@ -67,7 +69,6 @@ namespace W_01.Controllers
                 return new User
                 {
                     UserName = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value,
-                    Role = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value
                 };
             }
             return null;

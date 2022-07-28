@@ -1,0 +1,11 @@
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\bin\Debug\net6.0\W-01.Core.deps.json
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\bin\Debug\net6.0\W-01.Core.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\bin\Debug\net6.0\ref\W-01.Core.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\bin\Debug\net6.0\W-01.Core.pdb
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\obj\Debug\net6.0\W-01.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\obj\Debug\net6.0\W-01.Core.AssemblyInfoInputs.cache
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\obj\Debug\net6.0\W-01.Core.AssemblyInfo.cs
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\obj\Debug\net6.0\W-01.Core.csproj.CoreCompileInputs.cache
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\obj\Debug\net6.0\W-01.Core.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\obj\Debug\net6.0\ref\W-01.Core.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Core\obj\Debug\net6.0\W-01.Core.pdb

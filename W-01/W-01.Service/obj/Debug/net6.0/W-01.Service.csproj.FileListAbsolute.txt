@@ -1,0 +1,17 @@
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\W-01.Service.deps.json
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\W-01.Service.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\ref\W-01.Service.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\W-01.Service.pdb
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\W-01.Core.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\W-01.Repository.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\W-01.Repository.pdb
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\bin\Debug\net6.0\W-01.Core.pdb
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.csproj.AssemblyReference.cache
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.AssemblyInfoInputs.cache
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.AssemblyInfo.cs
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.csproj.CoreCompileInputs.cache
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.csproj.CopyComplete
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\ref\W-01.Service.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01.Service\obj\Debug\net6.0\W-01.Service.pdb

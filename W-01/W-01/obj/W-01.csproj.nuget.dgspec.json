@@ -4,14 +4,14 @@
     "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\W-01.csproj": {}
   },
   "projects": {
-    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\W-01.csproj": {
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Core\\W-01.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\W-01.csproj",
-        "projectName": "W-01",
-        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\W-01.csproj",
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Core\\W-01.Core.csproj",
+        "projectName": "W-01.Core",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Core\\W-01.Core.csproj",
         "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\obj\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,8 +43,216 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Repository\\W-01.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Repository\\W-01.Repository.csproj",
+        "projectName": "W-01.Repository",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Repository\\W-01.Repository.csproj",
+        "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Core\\W-01.Core.csproj": {
+                "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Core\\W-01.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Service\\W-01.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Service\\W-01.Service.csproj",
+        "projectName": "W-01.Service",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Service\\W-01.Service.csproj",
+        "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Repository\\W-01.Repository.csproj": {
+                "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Repository\\W-01.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\W-01.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\W-01.csproj",
+        "projectName": "W-01",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\W-01.csproj",
+        "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Service\\W-01.Service.csproj": {
+                "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-01\\W-01.Service\\W-01.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.7, )"
             },

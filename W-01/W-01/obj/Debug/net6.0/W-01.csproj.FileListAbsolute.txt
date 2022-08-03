@@ -67,3 +67,8 @@ C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\W-01.Core.pdb
 C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\W-01.Repository.pdb
 C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\Humanizer.dll
 C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\suley\Desktop\DGAkademi\W-01\W-01\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

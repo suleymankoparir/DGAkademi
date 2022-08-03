@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 using W_01.Core.Repositories;
 using W_01.Core.Services;
 using W_01.Core.UnitOfWorks;
@@ -43,7 +37,7 @@ namespace W_01.Service.Services
 
         public IQueryable<T> GetAllAsync()
         {
-            return  _repository.GetAll();
+            return _repository.GetAll();
         }
 
         public async Task<T> GetByIdAsync(int id)

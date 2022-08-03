@@ -9,13 +9,25 @@ using W_01.Core.UnitOfWorks;
 using W_01.Repository;
 using W_01.Repository.Repositories;
 using W_01.Repository.UnitOfWorks;
+using W_01.Service.Mapping;
 using W_01.Service.Services;
+using FluentValidation.AspNetCore;
+using W_01.Service.Validations;
+using Microsoft.AspNetCore.Mvc;
+using W_01.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(new ValidateFilterAttribute());
+}).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserDtoValidator>());
 
-builder.Services.AddControllers();
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
     options =>
     {
@@ -37,6 +49,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>

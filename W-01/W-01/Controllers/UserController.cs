@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -16,11 +17,13 @@ namespace W_01.Controllers
     {
         private IConfiguration _config;
         private readonly IService<User> _service;
+        private readonly IMapper _mapper;
 
-        public UserController(IConfiguration config, IService<User> service)
+        public UserController(IConfiguration config, IService<User> service, IMapper mapper)
         {
             _config = config;
             _service = service;
+            _mapper = mapper;
         }
         [AllowAnonymous]
         [HttpPost]
@@ -33,6 +36,17 @@ namespace W_01.Controllers
                 return Ok(token);
             }
             return NotFound("User not found");
+        }
+        [AllowAnonymous]
+        [HttpPost("[action]")]
+        public async Task<IActionResult> SignUp(UserDto userDto)
+        {
+            var user=_service.Where(x=>x.UserName==userDto.UserName).SingleOrDefault();
+            if (user != null)
+                return Conflict("This username is already exist");
+            user=_mapper.Map<User>(userDto);
+            await _service.AddAsync(user);
+            return Ok("Sign up is successful, for accessing to system please login");
         }
         private string Generate(User user)
         {

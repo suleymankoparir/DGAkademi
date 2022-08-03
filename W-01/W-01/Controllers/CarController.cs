@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using W_01.Core.DTOs;
 using W_01.Core.Models;
 using W_01.Core.Services;
 
@@ -10,19 +12,25 @@ namespace W_01.Controllers
     public class CarController : ControllerBase
     {
         private readonly IService<BaseCar> _service;
+        private readonly IMapper _mapper;
 
-        public CarController(IService<BaseCar> service)
+        public CarController(IService<BaseCar> service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [Authorize]
         public IActionResult GetInfo()
         {
-            
-            var value = _service.GetAllAsync().ToList();          
-            return new ObjectResult(value)
+            var value = _service.GetAllAsync().ToList();
+            var valueDto = _mapper.Map<List<BaseCarDto>>(value);
+            for (int i = 0; i < valueDto.Count; i++)
+            {
+                valueDto[i].Brand = value[i].GetType().Name;
+            }
+            return new ObjectResult(valueDto)
             {
                 StatusCode = 200
             };
@@ -33,7 +41,7 @@ namespace W_01.Controllers
         public IActionResult GetBmw()
         {
 
-            var value = _service.Where(x=>x is Bmw).ToList();
+            var value = _service.Where(x => x is Bmw).ToList();
             return new ObjectResult(value)
             {
                 StatusCode = 200

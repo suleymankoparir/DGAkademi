@@ -12,7 +12,7 @@ namespace W_01.Repository.Configurations
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.UserName).HasMaxLength(32).IsRequired();
             builder.HasIndex(x => x.UserName).IsUnique();
-            builder.Property(x => x.Password).IsRequired().HasMaxLength(32);
+            builder.Property(x => x.Password).HasMaxLength(64).IsRequired();
         }
     }
 }

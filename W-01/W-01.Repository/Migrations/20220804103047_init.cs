@@ -31,7 +31,7 @@ namespace W_01.Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,8 +53,8 @@ namespace W_01.Repository.Migrations
                 columns: new[] { "Id", "Password", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "deneme", "suleymankoparir" },
-                    { 2, "password", "user2" }
+                    { 1, "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", "suleymankoparir" },
+                    { 2, "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7", "user2" }
                 });
 
             migrationBuilder.CreateIndex(

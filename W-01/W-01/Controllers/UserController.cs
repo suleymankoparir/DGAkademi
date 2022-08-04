@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using W_01.Core.DTOs;
 using W_01.Core.Models;
@@ -41,6 +42,7 @@ namespace W_01.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> SignUp(UserDto userDto)
         {
+            userDto.Password=GetPasswordHash(userDto.Password);
             var user=_service.Where(x=>x.UserName==userDto.UserName).SingleOrDefault();
             if (user != null)
                 return Conflict("This username is already exist");
@@ -67,7 +69,8 @@ namespace W_01.Controllers
 
         private User Authenticate(UserDto userDto)
         {
-            var currentUser = _service.Where(x => x.UserName == userDto.UserName && x.Password == userDto.Password).SingleOrDefault();
+            var hashedPassword =GetPasswordHash(userDto.Password);
+            var currentUser = _service.Where(x => x.UserName == userDto.UserName && x.Password == hashedPassword).SingleOrDefault();
             if (currentUser != null)
             {
                 return currentUser;
@@ -86,6 +89,21 @@ namespace W_01.Controllers
                 };
             }
             return null;
+        } 
+        private String GetPasswordHash(String text)
+        {
+            string key = _config["Hash:Key"];
+            ASCIIEncoding encoding = new ASCIIEncoding();
+
+            Byte[] textBytes = encoding.GetBytes(text);
+            Byte[] keyBytes = encoding.GetBytes(key);
+
+            Byte[] hashBytes;
+
+            using (HMACSHA256 hash = new HMACSHA256(keyBytes))
+                hashBytes = hash.ComputeHash(textBytes);
+
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
         }
     }
 }

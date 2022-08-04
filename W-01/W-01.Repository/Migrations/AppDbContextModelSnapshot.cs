@@ -59,8 +59,8 @@ namespace W_01.Repository.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -78,13 +78,13 @@ namespace W_01.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            Password = "deneme",
+                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
                             UserName = "suleymankoparir"
                         },
                         new
                         {
                             Id = 2,
-                            Password = "password",
+                            Password = "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7",
                             UserName = "user2"
                         });
                 });

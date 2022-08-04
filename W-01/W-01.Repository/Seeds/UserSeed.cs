@@ -13,13 +13,13 @@ namespace W_01.Repository.Seeds
                 {
                     Id = 1,
                     UserName = "suleymankoparir",
-                    Password = "deneme"
+                    Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a"//password
                 },
                 new User
                 {
                     Id = 2,
                     UserName = "user2",
-                    Password = "password"
+                    Password = "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7"//şifre
                 }
                 );
         }

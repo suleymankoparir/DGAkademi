@@ -36,7 +36,7 @@ namespace W_01.Controllers
                 var token = Generate(user);
                 return Ok(token);
             }
-            return NotFound("User not found");
+            return NotFound("Username or password is wrong");
         }
         [AllowAnonymous]
         [HttpPost("[action]")]

@@ -1,6 +1,6 @@
 ﻿namespace W_01.Core.Models
 {
-    public class BaseCar
+    public abstract class BaseCar
     {
         public int Id { get; set; }
         public int Door { get; set; }

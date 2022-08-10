@@ -15,6 +15,7 @@ using FluentValidation.AspNetCore;
 using W_01.Service.Validations;
 using Microsoft.AspNetCore.Mvc;
 using W_01.Filters;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,7 +45,35 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
+    {
+        Name = "Bearer",
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+        Description = "Specify the authorization token.",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+    };
+    c.AddSecurityDefinition("jwt_auth", securityDefinition);
+
+    // Make sure swagger UI requires a Bearer token specified
+    OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme()
+    {
+        Reference = new OpenApiReference()
+        {
+            Id = "jwt_auth",
+            Type = ReferenceType.SecurityScheme
+        }
+    };
+    OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
+    {
+        {securityScheme, new string[] { }},
+    };
+    c.AddSecurityRequirement(securityRequirements);
+}
+);
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

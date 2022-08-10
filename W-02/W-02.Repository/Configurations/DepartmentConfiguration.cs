@@ -19,7 +19,7 @@ namespace W_02.Repository.Configurations
             builder.Property(x => x.Name).HasMaxLength(32).IsRequired();
             builder.HasIndex(x => x.Name).IsUnique();
 
-            builder.HasMany(x => x.People).WithOne(x => x.Department).HasForeignKey(x => x.DepartmantId);
+            builder.HasMany(x => x.People).WithOne(x => x.Department).HasForeignKey(x => x.DepartmentId);
         }
     }
 }

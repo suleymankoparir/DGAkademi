@@ -16,10 +16,10 @@ namespace W_02.Service.Validations
             RuleFor(x => x.UserName).NotNull().WithMessage("{PropertyName} is requiered").NotEmpty().WithMessage("{PropertyName} is requiered");
             RuleFor(x => x.Password).NotNull().WithMessage("{PropertyName} is requiered").NotEmpty().WithMessage("{PropertyName} is requiered");
             RuleFor(x => x.RoleId).NotNull().WithMessage("{PropertyName} is requiered").NotEmpty().WithMessage("{PropertyName} is requiered");
-            RuleFor(x => x.DepartmantId).NotNull().WithMessage("{PropertyName} is requiered").NotEmpty().WithMessage("{PropertyName} is requiered");
+            RuleFor(x => x.DepartmentId).NotNull().WithMessage("{PropertyName} is requiered").NotEmpty().WithMessage("{PropertyName} is requiered");
 
-            RuleFor(x => x.RoleId).InclusiveBetween(0, int.MaxValue).WithMessage("{PropertyName} is requiered must be greater or equel to 0");
-            RuleFor(x => x.DepartmantId).InclusiveBetween(0, int.MaxValue).WithMessage("{PropertyName} is requiered must be greater or equel to 0");
+            RuleFor(x => x.RoleId).InclusiveBetween(1, int.MaxValue).WithMessage("{PropertyName} is requiered must be greater or equel to 1");
+            RuleFor(x => x.DepartmentId).InclusiveBetween(1, int.MaxValue).WithMessage("{PropertyName} is requiered must be greater or equel to 1");
         }
     }
 }

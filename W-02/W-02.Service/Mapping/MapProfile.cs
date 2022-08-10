@@ -15,6 +15,7 @@ namespace W_02.Service.Mapping
             CreateMap<ProductAddDto, Product>();
             CreateMap<PersonSignUpDto, Person>();
             CreateMap<Role,RoleDto>();
+            CreateMap<PersonSignUpDto, Person>();
         }
     }
 }

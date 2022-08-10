@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using W_02.API.Filters;
@@ -43,14 +44,43 @@ builder.Services.AddControllers(options =>
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductAddDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonLoginDtoValidator>())
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonSignUpDtoValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonSignUpDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonUpdateDtoValidator>());
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
+    {
+        Name = "Bearer",
+        BearerFormat = "JWT",
+        Scheme = "bearer",
+        Description = "Specify the authorization token.",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+    };
+    c.AddSecurityDefinition("jwt_auth", securityDefinition);
+
+    // Make sure swagger UI requires a Bearer token specified
+    OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme()
+    {
+        Reference = new OpenApiReference()
+        {
+            Id = "jwt_auth",
+            Type = ReferenceType.SecurityScheme
+        }
+    };
+    OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
+    {
+        {securityScheme, new string[] { }},
+    };
+    c.AddSecurityRequirement(securityRequirements);
+}
+);
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 

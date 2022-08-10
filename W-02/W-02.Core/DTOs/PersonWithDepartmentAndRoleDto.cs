@@ -11,7 +11,7 @@ namespace W_02.Core.DTOs
         public int Id { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }
-        public string? DepartmantName { get; set; }
+        public string? DepartmentName { get; set; }
         public string? RoleName { get; set; }
     }
 }

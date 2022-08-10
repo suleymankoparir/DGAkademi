@@ -11,9 +11,10 @@ namespace W_02.Service.Validations
     public class ProductUpdateDtoValidator :AbstractValidator<ProductUpdateDto>
     {
         public ProductUpdateDtoValidator()
-        {
-            RuleFor(x => x.Id).NotNull().WithMessage("{PropertyName} is requiered").NotEmpty().WithMessage("{PropertyName} is requiered");
-            RuleFor(x => x.Id).InclusiveBetween(0, int.MaxValue).WithMessage("{PropertyName} is requiered must be greater or equel to 0");
+        {;
+            RuleFor(x => x.Id).InclusiveBetween(1, int.MaxValue).WithMessage("{PropertyName} is requiered must be greater or equel to 1");
+            RuleFor(x => x.Price).InclusiveBetween(1, decimal.MaxValue).WithMessage("{PropertyName} is requiered must be greater 1");
+            RuleFor(x => x.Stock).InclusiveBetween(0, int.MaxValue).WithMessage("{PropertyName} is requiered must be greater or equel to 0");
         }
     }
 }

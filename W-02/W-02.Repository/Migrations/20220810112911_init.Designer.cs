@@ -13,7 +13,7 @@ using W_02.Repository;
 namespace W_02.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220809103558_init")]
+    [Migration("20220810112911_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,7 +78,7 @@ namespace W_02.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DepartmantId")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("FullName")
@@ -101,7 +101,7 @@ namespace W_02.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmantId");
+                    b.HasIndex("DepartmentId");
 
                     b.HasIndex("RoleId");
 
@@ -114,7 +114,7 @@ namespace W_02.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            DepartmantId = 1,
+                            DepartmentId = 1,
                             FullName = "Süleyman Koparır",
                             Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
                             RoleId = 1,
@@ -123,7 +123,7 @@ namespace W_02.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            DepartmantId = 2,
+                            DepartmentId = 2,
                             FullName = "John Doe",
                             Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
                             RoleId = 2,
@@ -132,7 +132,7 @@ namespace W_02.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            DepartmantId = 3,
+                            DepartmentId = 3,
                             FullName = "Mark Doe",
                             Password = "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7",
                             RoleId = 2,
@@ -141,7 +141,7 @@ namespace W_02.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            DepartmantId = 4,
+                            DepartmentId = 4,
                             FullName = "Ron Doe",
                             Password = "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7",
                             RoleId = 2,
@@ -186,7 +186,7 @@ namespace W_02.Repository.Migrations
                             Name = "Computer",
                             Price = 3000m,
                             Stock = 30,
-                            createdTime = new DateTime(2022, 8, 9, 13, 35, 58, 735, DateTimeKind.Local).AddTicks(365),
+                            createdTime = new DateTime(2022, 8, 10, 14, 29, 10, 884, DateTimeKind.Local).AddTicks(2998),
                             updatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -195,7 +195,7 @@ namespace W_02.Repository.Migrations
                             Name = "Mouse",
                             Price = 150m,
                             Stock = 300,
-                            createdTime = new DateTime(2022, 8, 9, 10, 35, 58, 735, DateTimeKind.Utc).AddTicks(393),
+                            createdTime = new DateTime(2022, 8, 10, 11, 29, 10, 884, DateTimeKind.Utc).AddTicks(3027),
                             updatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -204,7 +204,7 @@ namespace W_02.Repository.Migrations
                             Name = "HDD",
                             Price = 300m,
                             Stock = 100,
-                            createdTime = new DateTime(2022, 8, 9, 10, 35, 58, 735, DateTimeKind.Utc).AddTicks(394),
+                            createdTime = new DateTime(2022, 8, 10, 11, 29, 10, 884, DateTimeKind.Utc).AddTicks(3028),
                             updatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
@@ -247,7 +247,7 @@ namespace W_02.Repository.Migrations
                 {
                     b.HasOne("W_02.Core.Models.Department", "Department")
                         .WithMany("People")
-                        .HasForeignKey("DepartmantId")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

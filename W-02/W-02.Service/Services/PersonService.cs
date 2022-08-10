@@ -30,7 +30,7 @@ namespace W_02.Service.Services
             var peopleDto=_mapper.Map<List<PersonWithDepartmentAndRoleDto>>(people);
             for(int i = 0; i < peopleDto.Count; i++)
             {
-                peopleDto[i].DepartmantName = people[i].Department.Name;
+                peopleDto[i].DepartmentName = people[i].Department.Name;
                 peopleDto[i].RoleName=people[i].Role.Name;
             }
             return peopleDto;
@@ -42,7 +42,7 @@ namespace W_02.Service.Services
             if(person==null)
                 return null;
             var personDto = _mapper.Map<PersonWithDepartmentAndRoleDto>(person);
-            personDto.DepartmantName = person.Department.Name;
+            personDto.DepartmentName = person.Department.Name;
             personDto.RoleName=person.Role.Name;
             return personDto;
         }

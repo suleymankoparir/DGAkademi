@@ -1,7 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using W_02.Core.DTOs;
 using W_02.Core.Models;
 using W_02.Core.Services;
@@ -25,6 +30,37 @@ namespace W_02.API.Controllers
             _roleService = roleService;
             _config = config;
         }
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> SignIn([FromBody] PersonLoginDto personDto)
+        {
+            var user = await Authenticate(personDto);
+            if (user != null)
+            {
+                var token = Generate(user);
+                return Ok(token);
+            }
+            return NotFound("Username or password is wrong");
+        }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> SignUp(PersonSignUpDto personSignUpDto)
+        {
+            var usernameControl = await _personService.Where(x => x.UserName == personSignUpDto.UserName).FirstOrDefaultAsync();
+            if (usernameControl != null)
+                ModelState.AddModelError("Username", "Username already registered");
+            var role = await _roleService.GetByIdAsync(personSignUpDto.RoleId);
+            var department = await _roleService.GetByIdAsync(personSignUpDto.DepartmentId);
+            if (role == null)
+                ModelState.AddModelError("Role", "Role Id not found");
+            if (department == null)
+                ModelState.AddModelError("Department", "Department Id not found");
+            if (ModelState.ErrorCount > 0)
+                return BadRequest(ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList());
+            var person = _mapper.Map<Person>(personSignUpDto);
+            person.Password = HashManager.GetPasswordHash(personSignUpDto.Password, _config["Hash:Key"]);
+            await _personService.AddAsync(person);
+            return NoContent();
+        }
         [HttpGet]
         public async Task<IActionResult> GetPeople()
         {
@@ -39,25 +75,6 @@ namespace W_02.API.Controllers
                 return NotFound();
             return Ok(personDto);
         }
-        [HttpPost]
-        public async Task<IActionResult> SignUp(PersonSignUpDto personSignUpDto)
-        {
-            var usernameControl = await _personService.Where(x => x.UserName == personSignUpDto.UserName).FirstOrDefaultAsync();
-            if (usernameControl != null)
-                ModelState.AddModelError("Username", "Username already registered");
-            var role=await _roleService.GetByIdAsync(personSignUpDto.RoleId);
-            var department = await _roleService.GetByIdAsync(personSignUpDto.DepartmantId);
-            if (role == null)
-                ModelState.AddModelError("Role", "Role Id not found");
-            if(department==null)
-                ModelState.AddModelError("Department", "Department Id not found");
-            if(ModelState.ErrorCount > 0)
-                return BadRequest(ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList());
-            var person =_mapper.Map<Person>(personSignUpDto);
-            person.Password= HashManager.GetPasswordHash(personSignUpDto.Password, _config["Hash:Key"]);
-            await _personService.AddAsync(person);
-            return NoContent();
-        }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -67,5 +84,80 @@ namespace W_02.API.Controllers
             await _personService.RemoveAsync(person);
             return NoContent();
         }
+        [HttpPut]
+        public async Task<IActionResult> Update(PersonUpdateDto personUpdateDto)
+        {
+            var person = await _personService.GetByIdAsync(personUpdateDto.Id);
+            if (person == null)
+                return NotFound();
+            if (personUpdateDto.UserName != null)
+                if (await _personService.Where(x => x.Id != personUpdateDto.Id && x.UserName == personUpdateDto.UserName).FirstOrDefaultAsync() != null)
+                    ModelState.AddModelError("username", "Username already exist for different id");
+                else
+                    person.UserName = personUpdateDto.UserName;
+            if(personUpdateDto.FullName!=null)
+                person.FullName = personUpdateDto.FullName;
+            if (personUpdateDto.RoleId != null)
+                if(await _roleService.GetByIdAsync((int)personUpdateDto.RoleId) == null)
+                    ModelState.AddModelError("RoleId", "RoleId does not exist");
+                else
+                    person.RoleId = (int)personUpdateDto.RoleId;
+            if (personUpdateDto.DepartmentId != null)
+                if(await _departmentService.GetByIdAsync((int)personUpdateDto.DepartmentId) == null)
+                    ModelState.AddModelError("DepartmentId", "DepartmentId does not exist");
+                else
+                    person.DepartmentId = (int)personUpdateDto.DepartmentId;
+            if(personUpdateDto.Password != null)
+                person.Password= HashManager.GetPasswordHash(personUpdateDto.Password, _config["Hash:Key"]);
+            if (ModelState.ErrorCount > 0)
+                return BadRequest(ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage).ToList());
+            await _personService.UpdateAsync(person);
+            return Ok();
+        }
+        #region private Authorize functions
+        private string Generate(PersonWithDepartmentAndRoleDto user)
+        {
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier,user.UserName),
+                new Claim(ClaimTypes.Role,user.DepartmentName),
+                new Claim(ClaimTypes.Role,user.RoleName)
+            };
+            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
+                _config["Jwt:Audience"],
+                claims,
+                expires: DateTime.Now.AddMinutes(15),
+                signingCredentials: credentials
+                );
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private async Task<PersonWithDepartmentAndRoleDto> Authenticate(PersonLoginDto userDto)
+        {
+            var hashedPassword = HashManager.GetPasswordHash(userDto.Password, _config["Hash:Key"]);
+            var currentUser = _personService.Where(x => x.UserName == userDto.UserName && x.Password == hashedPassword).SingleOrDefault();
+            if (currentUser != null)
+            {
+                var currentUserDto = await _personService.GetPersonWithDepartmentAndRole(currentUser.Id);
+                return currentUserDto;
+            }
+            return null;
+        }
+        private PersonWithDepartmentAndRoleDto GetCurrentUser()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                var userClaims = identity.Claims;
+                return new PersonWithDepartmentAndRoleDto
+                {
+                    UserName = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value,
+                };
+            }
+            return null;
+        }
+        #endregion
     }
 }

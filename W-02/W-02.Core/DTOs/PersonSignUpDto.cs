@@ -11,7 +11,7 @@ namespace W_02.Core.DTOs
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public int DepartmantId { get; set; }
+        public int DepartmentId { get; set; }
         public int RoleId { get; set; }
     }
 }

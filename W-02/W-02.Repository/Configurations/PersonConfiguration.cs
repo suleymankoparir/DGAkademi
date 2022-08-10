@@ -15,7 +15,7 @@ namespace W_02.Repository.Configurations
             builder.Property(x => x.FullName).HasMaxLength(64).IsRequired();
             builder.HasIndex(x => x.UserName).IsUnique();
             builder.Property(x => x.Password).HasMaxLength(64).IsRequired();
-            builder.HasOne(x => x.Department).WithMany(x =>x.People).HasForeignKey(x => x.DepartmantId);
+            builder.HasOne(x => x.Department).WithMany(x =>x.People).HasForeignKey(x => x.DepartmentId);
             builder.HasOne(x => x.Role).WithMany(x => x.People).HasForeignKey(x => x.RoleId);
         }
     }

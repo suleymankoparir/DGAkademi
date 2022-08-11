@@ -18,7 +18,8 @@ builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ValidateFilterAttribute());
 })
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ClassAddDtoValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ClassAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ClassUpdateDtoValidator>());
 builder.Services.AddDbContext<DataContext>(x =>
 {
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>

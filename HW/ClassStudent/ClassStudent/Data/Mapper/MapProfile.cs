@@ -10,6 +10,7 @@ namespace ClassStudent.Data.Mapper
         {
             CreateMap<Class, ClassDto>();
             CreateMap<ClassAddDto, Class>();
+            CreateMap<ClassUpdateDto, Class>();
         }
     }
 }

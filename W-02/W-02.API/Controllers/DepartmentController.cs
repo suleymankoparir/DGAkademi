@@ -65,7 +65,7 @@ namespace W_02.API.Controllers
             await _service.UpdateAsync(mapped);
             return Ok();
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             if(await _service.Where(x=>x.Id==id).AsNoTracking().FirstOrDefaultAsync()==null)

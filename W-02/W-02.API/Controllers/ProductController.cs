@@ -11,7 +11,7 @@ namespace W_02.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Manager,Purchasing")]
+    [Authorize(Roles = "Manager,Purchasing")]
     public class ProductController : ControllerBase
     {
         private readonly IService<Product> _service;

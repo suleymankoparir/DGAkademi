@@ -37,15 +37,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
+#pragma warning disable CS0618 // Type or member is obsolete
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new ValidateFilterAttribute());
 })
+#pragma warning restore CS0618 // Type or member is obsolete
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductAddDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductUpdateDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonLoginDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonSignUpDtoValidator>())
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonUpdateDtoValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PersonUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DepartmentAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DepartmentUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RoleAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RoleUpdateDtoValidator>());
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {

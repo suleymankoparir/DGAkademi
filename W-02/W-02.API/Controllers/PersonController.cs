@@ -15,6 +15,7 @@ namespace W_02.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Manager,Human Resources")]
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _personService;
@@ -42,6 +43,7 @@ namespace W_02.API.Controllers
             }
             return NotFound("Username or password is wrong");
         }
+        [AllowAnonymous]
         [HttpPost("[action]")]
         public async Task<IActionResult> SignUp(PersonSignUpDto personSignUpDto)
         {

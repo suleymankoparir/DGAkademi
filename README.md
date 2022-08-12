@@ -22,6 +22,7 @@ Endpoints below require jwt token
 
 
 W02
+Migration is done in the Repository layer.
 | Url | Type | Jwt | Access Role
 | ------------- | ------------- | ------------- | ------------- |
 |api/person|HTTP POST|No|Eveyone|

@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "9e75edc9-0f94-4031-80d3-d9540dd38278": {
+      "ProjectGuid": "9e75edc9-0f94-4031-80d3-d9540dd38278",
+      "DisplayName": "MovieDB.Core",
+      "ColorIndex": 0
+    },
+    "263d623f-2015-4842-addb-efac42556f95": {
+      "ProjectGuid": "263d623f-2015-4842-addb-efac42556f95",
+      "DisplayName": "MovieDB.Repository",
+      "ColorIndex": 1
+    },
+    "5d091adc-0da9-425e-8640-f93bbc7cce2d": {
+      "ProjectGuid": "5d091adc-0da9-425e-8640-f93bbc7cce2d",
+      "DisplayName": "MovieDB.Service",
+      "ColorIndex": 2
+    },
+    "f2c9ee46-6681-4843-9fb4-04fc732210f5": {
+      "ProjectGuid": "f2c9ee46-6681-4843-9fb4-04fc732210f5",
+      "DisplayName": "MovieDB.API",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}

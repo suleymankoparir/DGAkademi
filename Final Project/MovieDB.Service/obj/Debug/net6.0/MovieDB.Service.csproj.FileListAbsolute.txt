@@ -1,0 +1,17 @@
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\MovieDB.Service.deps.json
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\MovieDB.Service.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\ref\MovieDB.Service.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\MovieDB.Service.pdb
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\MovieDB.Core.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\MovieDB.Repository.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\MovieDB.Repository.pdb
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\bin\Debug\net6.0\MovieDB.Core.pdb
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.csproj.AssemblyReference.cache
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.AssemblyInfoInputs.cache
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.AssemblyInfo.cs
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.csproj.CoreCompileInputs.cache
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.csproj.CopyComplete
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\ref\MovieDB.Service.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Service\obj\Debug\net6.0\MovieDB.Service.pdb

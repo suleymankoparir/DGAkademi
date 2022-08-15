@@ -42,7 +42,7 @@ Migration is done in the Repository layer.
 |api/role|HTTP PUT|Yes|Manager|
 |api/role/{id}|HTTP DELETE|Yes|Manager|
 |api/product|HTTP GET|Yes|Manager, Purchasing|
-|api/product/{id}|HTTP GET|No|Manager, Purchasing|
+|api/product/{id}|HTTP GET|Yes|Manager, Purchasing|
 |api/product|HTTP POST|Yes|Manager, Purchasing|
 |api/product|HTTP PUT|Yes|Manager, Purchasing|
 |api/product/{id}|HTTP DELETE|Yes|Manager, Purchasing|

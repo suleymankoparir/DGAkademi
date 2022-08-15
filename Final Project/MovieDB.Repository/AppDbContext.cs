@@ -16,7 +16,7 @@ namespace MovieDB.Repository
         public DbSet<MoviePerformer> MoviePerformers { get; set; }
         public DbSet<MovieProducer> MovieProducers { get; set; }
         public DbSet<Performer> Performers { get; set; }
-        public DbSet<Populatiry> Populatiries { get; set; }
+        public DbSet<Popularity> Populatiries { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<User> Users { get; set; }

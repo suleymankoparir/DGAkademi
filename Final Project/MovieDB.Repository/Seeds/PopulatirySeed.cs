@@ -7,15 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieDB.Repository.Configurations
+namespace MovieDB.Repository.Seeds
 {
-    internal class PopularityConfiguration : IEntityTypeConfiguration<Popularity>
+    internal class PopulatirySeed : IEntityTypeConfiguration<Popularity>
     {
         public void Configure(EntityTypeBuilder<Popularity> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x=>x.Since).IsRequired();
-            builder.HasOne(x => x.Movie).WithOne(x => x.Populatiry).HasForeignKey<Popularity>(x => x.MovieId);
+            builder.HasData(
+                new Popularity
+                {
+                    Id = 1,
+                    MovieId = 3,
+                    Since = DateTime.UtcNow
+                }
+            );
         }
     }
 }

@@ -16,7 +16,8 @@ namespace MovieDB.Repository.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(64);
             builder.Property(x => x.ReleaseDate).IsRequired();
-            builder.Property(x => x.Budget).IsRequired();
+            builder.Property(x => x.Budget).IsRequired().HasPrecision(18, 3);
+            builder.Property(x => x.Gross).IsRequired().HasPrecision(18, 3);
 
             builder.HasMany(x => x.MovieCategory).WithOne(x => x.Movie).HasForeignKey(x => x.MovieId);
             builder.HasMany(x => x.MovieAward).WithOne(x => x.Movie).HasForeignKey(x => x.MovieId);
@@ -25,7 +26,7 @@ namespace MovieDB.Repository.Configurations
             builder.HasMany(x => x.MovieProducer).WithOne(x => x.Movie).HasForeignKey(x => x.MovieId);
             builder.HasMany(x => x.Reviews).WithOne(x => x.Movie).HasForeignKey(x => x.MovieId);
 
-            builder.HasOne(x => x.Populatiry).WithOne(x => x.Movie).HasForeignKey<Populatiry>(x => x.MovieId);
+            builder.HasOne(x => x.Populatiry).WithOne(x => x.Movie).HasForeignKey<Popularity>(x => x.MovieId);
         }
     }
 }

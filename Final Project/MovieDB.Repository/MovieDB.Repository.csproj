@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Seeds\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MovieDB.Core\MovieDB.Core.csproj" />
   </ItemGroup>
 

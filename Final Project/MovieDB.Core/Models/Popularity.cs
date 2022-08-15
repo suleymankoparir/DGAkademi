@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieDB.Core.Models
 {
-    public class Populatiry
+    public class Popularity
     {
         public int Id { get; set; }
         public int MovieId { get; set; }

@@ -25,8 +25,9 @@ W02
 Migration is done in the Repository layer.
 | Url | Type | Jwt | Access Role
 | ------------- | ------------- | ------------- | ------------- |
+|api/auth|HTTP POST|No|Everyone|
+|api/auth/refreshtoken|HTTP POST|No|Everyone|
 |api/person|HTTP POST|No|Everyone|
-|api/person/signup|HTTP POST|No|Everyone|
 |api/person|HTTP GET|Yes|Manager, Human Resourses|
 |api/person/{id}|HTTP GET|Yes|Manager, Human Resourses|
 |api/person|HTTP PUT|Yes|Manager, Human Resourses|

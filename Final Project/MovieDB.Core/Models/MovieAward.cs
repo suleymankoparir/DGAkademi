@@ -8,7 +8,6 @@ namespace MovieDB.Core.Models
 {
     public class MovieAward
     {
-        public int Id { get; set; }
         public DateTime Date { get; set; }
         public int MovieId { get; set; }
         public int AwardId { get; set; }

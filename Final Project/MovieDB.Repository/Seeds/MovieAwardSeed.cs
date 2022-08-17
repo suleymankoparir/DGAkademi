@@ -16,63 +16,71 @@ namespace MovieDB.Repository.Seeds
             builder.HasData(
                 new MovieAward
                 {
-                    Id=1,
                     MovieId = 1,
                     AwardId = 1,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id=2,
+                    MovieId = 1,
+                    AwardId = 2,
+                    Date = DateTime.UtcNow,
+                    DirectorId=2
+                },
+                new MovieAward
+                {
                     MovieId = 1,
                     AwardId = 7,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id = 3,
                     MovieId = 1,
                     AwardId = 13,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id = 4,
                     MovieId = 1,
                     AwardId = 16,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id = 5,
                     MovieId = 1,
                     AwardId = 22,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id = 6,
                     MovieId = 2,
                     AwardId = 1,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id = 7,
                     MovieId = 2,
                     AwardId = 17,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id = 8,
-                    MovieId = 2,
-                    AwardId = 17,
-                },
-                new MovieAward
-                {
-                    Id = 9,
                     MovieId = 3,
                     AwardId = 1,
+                    Date = DateTime.UtcNow
                 },
                 new MovieAward
                 {
-                    Id = 10,
                     MovieId = 3,
                     AwardId = 16,
+                    Date = DateTime.UtcNow
+                },
+                new MovieAward
+                {
+                    MovieId = 3,
+                    AwardId = 3,
+                    PerformerId=1,
+                    Date=DateTime.UtcNow
                 }
             );
         }

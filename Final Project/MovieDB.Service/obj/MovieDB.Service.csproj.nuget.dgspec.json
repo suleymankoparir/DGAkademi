@@ -188,9 +188,9 @@
               "target": "Package",
               "version": "[11.0.0, )"
             },
-            "FluentValidation.DependencyInjectionExtensions": {
+            "FluentValidation.AspNetCore": {
               "target": "Package",
-              "version": "[11.2.0, )"
+              "version": "[11.2.1, )"
             }
           },
           "imports": [

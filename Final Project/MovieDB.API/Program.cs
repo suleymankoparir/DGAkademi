@@ -1,7 +1,10 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MovieDB.API.Filters;
 using MovieDB.Core.Repositories;
 using MovieDB.Core.Services;
 using MovieDB.Core.UnitOfWorks;
@@ -10,6 +13,7 @@ using MovieDB.Repository.Repositories;
 using MovieDB.Repository.UnitOfWorks;
 using MovieDB.Service.Mapping;
 using MovieDB.Service.Services;
+using MovieDB.Service.Validations;
 using System.Reflection;
 using System.Text;
 
@@ -17,7 +21,25 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+#pragma warning disable CS0618 // Type or member is obsolete
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(new ValidateFilterAttribute());
+})
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieCategoryDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MoviePerformerDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieProducerDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieDirectorDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieAwardDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieAwardDeleteDtoValidator>());
+#pragma warning restore CS0618 // Type or member is obsolete
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 #region JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
     options =>
@@ -71,6 +93,10 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+
+builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 

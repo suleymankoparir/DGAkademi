@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "3vv8fIfYd9I2Zifvg1p4kV9ZGv4dwOvrj54jkGRmvepfvrv4zOb5Vjbnj+9CYq6V5/J2QjRqagoXXf+dhXPoPg==",
+  "dgSpecHash": "fKclG1HXhhzX2S49uXKegSvlK2BZEuaafJ073H2knWQcJDiXeqBo+m1sw1eV6lU3uxEbec42XLA0Un8vy6KSxA==",
   "success": true,
   "projectFilePath": "C:\\Users\\suley\\Desktop\\DGAkademi\\Final Project\\MovieDB.Service\\MovieDB.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\suley\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",
+    "C:\\Users\\suley\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.1\\fluentvalidation.aspnetcore.11.2.1.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.0\\fluentvalidation.dependencyinjectionextensions.11.2.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.8\\microsoft.entityframeworkcore.6.0.8.nupkg.sha512",

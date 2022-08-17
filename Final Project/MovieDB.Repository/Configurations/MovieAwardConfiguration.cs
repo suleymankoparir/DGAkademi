@@ -13,7 +13,7 @@ namespace MovieDB.Repository.Configurations
     {
         public void Configure(EntityTypeBuilder<MovieAward> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => new {x.MovieId,x.AwardId});
             builder.Property(x=>x.Date).IsRequired();
 
             builder.HasOne(x=>x.Award).WithMany(x=>x.MovieAward).HasForeignKey(x=>x.AwardId);

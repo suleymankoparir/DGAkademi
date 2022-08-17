@@ -16,6 +16,7 @@ namespace MovieDB.Repository.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Type = table.Column<string>(type: "text", nullable: true),
                     Name = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
@@ -73,6 +74,7 @@ namespace MovieDB.Repository.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Birthday = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Gender = table.Column<string>(type: "text", nullable: true),
                     Name = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
@@ -205,17 +207,15 @@ namespace MovieDB.Repository.Migrations
                 name: "MoviesAwards",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     MovieId = table.Column<int>(type: "integer", nullable: false),
                     AwardId = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DirectorId = table.Column<int>(type: "integer", nullable: true),
                     PerformerId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MoviesAwards", x => x.Id);
+                    table.PrimaryKey("PK_MoviesAwards", x => new { x.MovieId, x.AwardId });
                     table.ForeignKey(
                         name: "FK_MoviesAwards_Awards_AwardId",
                         column: x => x.AwardId,
@@ -273,7 +273,7 @@ namespace MovieDB.Repository.Migrations
                     Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     MovieId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    Score = table.Column<byte>(type: "smallint", nullable: false),
+                    Score = table.Column<int>(type: "integer", nullable: false),
                     Comment = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -295,32 +295,32 @@ namespace MovieDB.Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "Awards",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Name", "Type" },
                 values: new object[,]
                 {
-                    { 1, "Oscar Best Picture" },
-                    { 2, "Oscar Best Director" },
-                    { 3, "Oscar Best Actor" },
-                    { 4, "Oscar Best Actress" },
-                    { 5, "Oscar Best Cinematography" },
-                    { 6, "Oscar Best Production Desgin" },
-                    { 7, "Oscar Best Adapted Screenplay" },
-                    { 8, "Oscar Best Sound" },
-                    { 9, "Oscar Best Animated Short Film" },
-                    { 10, "Oscar Best Live Action Short Film" },
-                    { 11, "Oscar Best Film Editing" },
-                    { 12, "Oscar Best Original Score" },
-                    { 13, "Oscar Best Original Song" },
-                    { 14, "Oscar Best Supporting Actor" },
-                    { 15, "Oscar Best Supporting Actress" },
-                    { 16, "Oscar Best Visual Effects" },
-                    { 17, "Oscar Best Original Screenplay" },
-                    { 18, "Oscar Best Documentary Short Film" },
-                    { 19, "Oscar Best Documentary Feature Film" },
-                    { 20, "Oscar Best International Feature Film" },
-                    { 21, "Oscar Best Custome Design" },
-                    { 22, "Oscar Best Makeup and Hairstyling" },
-                    { 23, "Oscar Best Animated Feature Film" }
+                    { 1, "Oscar Best Picture", "Movie" },
+                    { 2, "Oscar Best Director", "Director" },
+                    { 3, "Oscar Best Actor", "Male" },
+                    { 4, "Oscar Best Actress", "Female" },
+                    { 5, "Oscar Best Cinematography", "Movie" },
+                    { 6, "Oscar Best Production Desgin", "Movie" },
+                    { 7, "Oscar Best Adapted Screenplay", "Movie" },
+                    { 8, "Oscar Best Sound", "Movie" },
+                    { 9, "Oscar Best Animated Short Film", "Movie" },
+                    { 10, "Oscar Best Live Action Short Film", "Movie" },
+                    { 11, "Oscar Best Film Editing", "Movie" },
+                    { 12, "Oscar Best Original Score", "Movie" },
+                    { 13, "Oscar Best Original Song", "Movie" },
+                    { 14, "Oscar Best Supporting Actor", "Male" },
+                    { 15, "Oscar Best Supporting Actress", "Female" },
+                    { 16, "Oscar Best Visual Effects", "Movie" },
+                    { 17, "Oscar Best Original Screenplay", "Movie" },
+                    { 18, "Oscar Best Documentary Short Film", "Movie" },
+                    { 19, "Oscar Best Documentary Feature Film", "Movie" },
+                    { 20, "Oscar Best International Feature Film", "Movie" },
+                    { 21, "Oscar Best Custome Design", "Movie" },
+                    { 22, "Oscar Best Makeup and Hairstyling", "Movie" },
+                    { 23, "Oscar Best Animated Feature Film", "Movie" }
                 });
 
             migrationBuilder.InsertData(
@@ -361,14 +361,14 @@ namespace MovieDB.Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "Performers",
-                columns: new[] { "Id", "Birthday", "Name" },
+                columns: new[] { "Id", "Birthday", "Gender", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1974, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Leonardo Dicaprio" },
-                    { 2, new DateTime(1981, 1, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Elijah Wood" },
-                    { 3, new DateTime(1972, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Karl Urban" },
-                    { 4, new DateTime(1956, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Christoph Waltz" },
-                    { 5, new DateTime(1967, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jamie Foxx" }
+                    { 1, new DateTime(1974, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), "Male", "Leonardo Dicaprio" },
+                    { 2, new DateTime(1981, 1, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Male", "Elijah Wood" },
+                    { 3, new DateTime(1972, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Male", "Karl Urban" },
+                    { 4, new DateTime(1956, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Male", "Christoph Waltz" },
+                    { 5, new DateTime(1967, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Male", "Jamie Foxx" }
                 });
 
             migrationBuilder.InsertData(
@@ -430,19 +430,20 @@ namespace MovieDB.Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "MoviesAwards",
-                columns: new[] { "Id", "AwardId", "Date", "DirectorId", "MovieId", "PerformerId" },
+                columns: new[] { "AwardId", "MovieId", "Date", "DirectorId", "PerformerId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null },
-                    { 2, 7, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null },
-                    { 3, 13, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null },
-                    { 4, 16, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null },
-                    { 5, 22, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null },
-                    { 6, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, null },
-                    { 7, 17, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, null },
-                    { 8, 17, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, null },
-                    { 9, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 3, null },
-                    { 10, 16, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 3, null }
+                    { 1, 1, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(106), null, null },
+                    { 2, 1, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(109), 2, null },
+                    { 7, 1, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(110), null, null },
+                    { 13, 1, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(111), null, null },
+                    { 16, 1, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(112), null, null },
+                    { 22, 1, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(112), null, null },
+                    { 1, 2, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(113), null, null },
+                    { 17, 2, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(114), null, null },
+                    { 1, 3, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(114), null, null },
+                    { 3, 3, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(116), null, 1 },
+                    { 16, 3, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(115), null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -462,17 +463,17 @@ namespace MovieDB.Repository.Migrations
             migrationBuilder.InsertData(
                 table: "Populatiries",
                 columns: new[] { "Id", "MovieId", "Since" },
-                values: new object[] { 1, 3, new DateTime(2022, 8, 15, 15, 25, 1, 19, DateTimeKind.Utc).AddTicks(604) });
+                values: new object[] { 1, 3, new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(1014) });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
                 columns: new[] { "Id", "Comment", "Date", "MovieId", "Score", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Best movie ever", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, (byte)90, 1 },
-                    { 2, "Fantastic movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, (byte)100, 2 },
-                    { 3, "Good movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, (byte)70, 1 },
-                    { 4, "Bad movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, (byte)40, 2 }
+                    { 1, "Best movie ever", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 90, 1 },
+                    { 2, "Fantastic movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 100, 2 },
+                    { 3, "Good movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 70, 1 },
+                    { 4, "Bad movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 40, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -499,11 +500,6 @@ namespace MovieDB.Repository.Migrations
                 name: "IX_MoviesAwards_DirectorId",
                 table: "MoviesAwards",
                 column: "DirectorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MoviesAwards_MovieId",
-                table: "MoviesAwards",
-                column: "MovieId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MoviesAwards_PerformerId",

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "HhvekIqS/wHqJ6Csen9Jt45bXpyntvlyRyN2Z+OVN+jf3dpVdNU2ohxmHBg86gMUKB7GsyHZBLWMLW+KlwiTAg==",
+  "dgSpecHash": "RCslK5vbFD8AwkdxddV4Ec+pH8r66fJpb5VfmsuG6utSUa3P6vE1gNPgKpE881ldrJKM1ezrW36ZUriiaKH/uQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\suley\\Desktop\\DGAkademi\\Final Project\\MovieDB.API\\MovieDB.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\suley\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",
+    "C:\\Users\\suley\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.1\\fluentvalidation.aspnetcore.11.2.1.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.0\\fluentvalidation.dependencyinjectionextensions.11.2.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.8\\microsoft.aspnetcore.authentication.jwtbearer.6.0.8.nupkg.sha512",

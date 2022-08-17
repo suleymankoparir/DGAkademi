@@ -15,7 +15,7 @@ namespace MovieDB.Core.Models
         public int UserId { get; set; }
         public User User { get; set; }
 
-        public byte Score { get; set; }
+        public int Score { get; set; }
         public string Comment { get; set; }
 
     }

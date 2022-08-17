@@ -9,3 +9,4 @@ C:\Users\suley\Desktop\DGAkademi\W-02\W-02.Core\obj\Debug\net6.0\W-02.Core.cspro
 C:\Users\suley\Desktop\DGAkademi\W-02\W-02.Core\obj\Debug\net6.0\W-02.Core.dll
 C:\Users\suley\Desktop\DGAkademi\W-02\W-02.Core\obj\Debug\net6.0\ref\W-02.Core.dll
 C:\Users\suley\Desktop\DGAkademi\W-02\W-02.Core\obj\Debug\net6.0\W-02.Core.pdb
+C:\Users\suley\Desktop\DGAkademi\W-02\W-02.Core\obj\Debug\net6.0\W-02.Core.csproj.AssemblyReference.cache

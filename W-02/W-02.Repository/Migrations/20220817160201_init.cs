@@ -62,6 +62,8 @@ namespace W_02.Repository.Migrations
                     UserName = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     DepartmentId = table.Column<int>(type: "int", nullable: false),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TokenExpireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -97,9 +99,9 @@ namespace W_02.Repository.Migrations
                 columns: new[] { "Id", "Name", "Price", "Stock", "createdTime", "updatedTime" },
                 values: new object[,]
                 {
-                    { 1, "Computer", 3000m, 30, new DateTime(2022, 8, 10, 14, 29, 10, 884, DateTimeKind.Local).AddTicks(2998), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, "Mouse", 150m, 300, new DateTime(2022, 8, 10, 11, 29, 10, 884, DateTimeKind.Utc).AddTicks(3027), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, "HDD", 300m, 100, new DateTime(2022, 8, 10, 11, 29, 10, 884, DateTimeKind.Utc).AddTicks(3028), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, "Computer", 3000m, 30, new DateTime(2022, 8, 17, 19, 2, 1, 213, DateTimeKind.Local).AddTicks(2058), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Mouse", 150m, 300, new DateTime(2022, 8, 17, 16, 2, 1, 213, DateTimeKind.Utc).AddTicks(2086), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "HDD", 300m, 100, new DateTime(2022, 8, 17, 16, 2, 1, 213, DateTimeKind.Utc).AddTicks(2087), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -113,13 +115,13 @@ namespace W_02.Repository.Migrations
 
             migrationBuilder.InsertData(
                 table: "People",
-                columns: new[] { "Id", "DepartmentId", "FullName", "Password", "RoleId", "UserName" },
+                columns: new[] { "Id", "DepartmentId", "FullName", "Password", "RefreshToken", "RoleId", "TokenExpireDate", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 1, "Süleyman Koparır", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", 1, "suleymankoparir" },
-                    { 2, 2, "John Doe", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", 2, "johndoe" },
-                    { 3, 3, "Mark Doe", "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7", 2, "markdoe" },
-                    { 4, 4, "Ron Doe", "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7", 2, "rondoe" }
+                    { 1, 1, "Süleyman Koparır", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", null, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "suleymankoparir" },
+                    { 2, 2, "John Doe", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", null, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe" },
+                    { 3, 3, "Mark Doe", "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7", null, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "markdoe" },
+                    { 4, 4, "Ron Doe", "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7", null, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "rondoe" }
                 });
 
             migrationBuilder.CreateIndex(

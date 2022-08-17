@@ -17,12 +17,12 @@ namespace W_02.Repository.Repositories
 
         public async Task<List<Person>> GetPeopleWithDepartmentAndRole()
         {
-            return await _context.People.Include(x => x.Department).Include(x=>x.Role).ToListAsync();
+            return await _context.People.Include(x => x.Department).Include(x=>x.Role).AsNoTracking().ToListAsync();
         }
 
         public async Task<Person> GetPersonWithDepartmentAndRole(int id)
         {
-            return await _context.People.Include(x => x.Department).Include(x => x.Role).Where(x=>x.Id==id).FirstOrDefaultAsync();
+            return await _context.People.Include(x => x.Department).Include(x => x.Role).Where(x=>x.Id==id).AsNoTracking().FirstOrDefaultAsync();
         }
     }
 }

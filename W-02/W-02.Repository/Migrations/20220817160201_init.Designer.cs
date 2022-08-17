@@ -13,7 +13,7 @@ using W_02.Repository;
 namespace W_02.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220810112911_init")]
+    [Migration("20220817160201_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,8 +91,14 @@ namespace W_02.Repository.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("TokenExpireDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -118,6 +124,7 @@ namespace W_02.Repository.Migrations
                             FullName = "Süleyman Koparır",
                             Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
                             RoleId = 1,
+                            TokenExpireDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "suleymankoparir"
                         },
                         new
@@ -127,6 +134,7 @@ namespace W_02.Repository.Migrations
                             FullName = "John Doe",
                             Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
                             RoleId = 2,
+                            TokenExpireDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "johndoe"
                         },
                         new
@@ -136,6 +144,7 @@ namespace W_02.Repository.Migrations
                             FullName = "Mark Doe",
                             Password = "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7",
                             RoleId = 2,
+                            TokenExpireDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "markdoe"
                         },
                         new
@@ -145,6 +154,7 @@ namespace W_02.Repository.Migrations
                             FullName = "Ron Doe",
                             Password = "d7d378fbcffdcfa759ba2681d51e5e695f0078e56d4a2e2c0e539dc61e1a67e7",
                             RoleId = 2,
+                            TokenExpireDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserName = "rondoe"
                         });
                 });
@@ -186,7 +196,7 @@ namespace W_02.Repository.Migrations
                             Name = "Computer",
                             Price = 3000m,
                             Stock = 30,
-                            createdTime = new DateTime(2022, 8, 10, 14, 29, 10, 884, DateTimeKind.Local).AddTicks(2998),
+                            createdTime = new DateTime(2022, 8, 17, 19, 2, 1, 213, DateTimeKind.Local).AddTicks(2058),
                             updatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -195,7 +205,7 @@ namespace W_02.Repository.Migrations
                             Name = "Mouse",
                             Price = 150m,
                             Stock = 300,
-                            createdTime = new DateTime(2022, 8, 10, 11, 29, 10, 884, DateTimeKind.Utc).AddTicks(3027),
+                            createdTime = new DateTime(2022, 8, 17, 16, 2, 1, 213, DateTimeKind.Utc).AddTicks(2086),
                             updatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -204,7 +214,7 @@ namespace W_02.Repository.Migrations
                             Name = "HDD",
                             Price = 300m,
                             Stock = 100,
-                            createdTime = new DateTime(2022, 8, 10, 11, 29, 10, 884, DateTimeKind.Utc).AddTicks(3028),
+                            createdTime = new DateTime(2022, 8, 17, 16, 2, 1, 213, DateTimeKind.Utc).AddTicks(2087),
                             updatedTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

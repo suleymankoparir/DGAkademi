@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using W_02.API.Filters;
+using W_02.API.Middlewares;
 using W_02.Core.Repositories;
 using W_02.Core.Services;
 using W_02.Core.UnitOfWorks;
@@ -51,7 +52,8 @@ builder.Services.AddControllers(options =>
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DepartmentAddDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DepartmentUpdateDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RoleAddDtoValidator>())
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RoleUpdateDtoValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<RoleUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<TokenValidator>());
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
@@ -114,6 +116,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();///+
 
 app.UseAuthentication();
 

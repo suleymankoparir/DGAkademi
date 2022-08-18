@@ -52,3 +52,5 @@ C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.API\obj\Debug\net6.0\ref\
 C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.API\obj\Debug\net6.0\MovieDB.API.pdb
 C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.API\obj\Debug\net6.0\MovieDB.API.genruntimeconfig.cache
 C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.API\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.API\bin\Debug\net6.0\Autofac.dll
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.API\bin\Debug\net6.0\Autofac.Extensions.DependencyInjection.dll

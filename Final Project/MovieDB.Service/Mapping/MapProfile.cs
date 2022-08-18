@@ -8,7 +8,7 @@ namespace MovieDB.Service.Mapping
     {
         public MapProfile()
         {
-            CreateMap<Movie, MovieGetDto>();
+            CreateMap<Movie, MovieGetAllDto>();
             CreateMap<Category, CategoryGetDto>();
             CreateMap<Performer, PerformerGetDto>();
             CreateMap<Director, DirectorGetDto>();
@@ -21,6 +21,13 @@ namespace MovieDB.Service.Mapping
             CreateMap<MovieProducerDto, MovieProducer>();
             CreateMap<MovieDirectorDto, MovieDirector>();
             CreateMap<MovieAwardDto, MovieAward>();
+            CreateMap<Category, CategoryGetAllDto>();
+            CreateMap<Movie, MovieGetDto>();
+            CreateMap<Producer, ProducerGetAllDto>();
+            CreateMap<Award, AwardGetAllDto>();
+            CreateMap<AwardAddDto, Award>();
+            CreateMap<AwardUpdateDto, Award>();
+            CreateMap<Performer,PerformerGetAllDto>();
         }
     }
 }

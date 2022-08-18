@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RCslK5vbFD8AwkdxddV4Ec+pH8r66fJpb5VfmsuG6utSUa3P6vE1gNPgKpE881ldrJKM1ezrW36ZUriiaKH/uQ==",
+  "dgSpecHash": "NGm0op90nz6cqAWypnCzDXSCCtB86BMfoYJJFIj2l2maGNw/jjkHUFvGW55YtSw8WGxoUR8q7qUTXkrFUtp13Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\suley\\Desktop\\DGAkademi\\Final Project\\MovieDB.API\\MovieDB.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\suley\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
+    "C:\\Users\\suley\\.nuget\\packages\\autofac.extensions.dependencyinjection\\8.0.0\\autofac.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\suley\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",

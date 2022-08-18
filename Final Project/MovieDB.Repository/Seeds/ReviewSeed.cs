@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieDB.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieDB.Repository.Seeds
 {
@@ -16,11 +11,11 @@ namespace MovieDB.Repository.Seeds
             builder.HasData(
                 new Review
                 {
-                    Id=1,
-                    UserId=1,
-                    MovieId=1,
-                    Score=90,
-                    Comment="Best movie ever"
+                    Id = 1,
+                    UserId = 1,
+                    MovieId = 1,
+                    Score = 90,
+                    Comment = "Best movie ever"
                 },
                 new Review
                 {

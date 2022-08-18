@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MovieDB.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieDB.Repository.Seeds
 {
@@ -18,7 +13,7 @@ namespace MovieDB.Repository.Seeds
                 {
                     Id = 1,
                     Name = "Quentin Tarantino",
-                    Birthday=DateTime.Parse("27.03.1969")
+                    Birthday = DateTime.Parse("27.03.1969")
                 },
                 new Director
                 {

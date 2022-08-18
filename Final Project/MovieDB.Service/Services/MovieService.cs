@@ -5,11 +5,6 @@ using MovieDB.Core.Models;
 using MovieDB.Core.Repositories;
 using MovieDB.Core.Services;
 using MovieDB.Core.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MovieDB.Service.Services
 {
@@ -17,16 +12,14 @@ namespace MovieDB.Service.Services
     {
         private readonly IMovieRepository _movieRepository;
         private readonly IService<Category> _categoryService;
-        private readonly IService<Movie> _movieService;
         private readonly IService<Director> _directorService;
         private readonly IService<Producer> _producerService;
         private readonly IService<Award> _awardService;
         private readonly IService<Performer> _performerService;
         private readonly IService<Review> _reviewService;
         private readonly IMapper _mapper;
-        public MovieService(IGenericRepository<Movie> repository, IUnitOfWork unitOfWork, IService<Movie> movieService, IMapper mapper, IService<Director> directorService, IService<Producer> producerService, IService<Award> awardService, IService<Performer> performerService, IService<Review> reviewService, IMovieRepository movieRepository, IService<Category> categoryService) : base(repository, unitOfWork)
+        public MovieService(IGenericRepository<Movie> repository, IUnitOfWork unitOfWork, IMapper mapper, IService<Director> directorService, IService<Producer> producerService, IService<Award> awardService, IService<Performer> performerService, IService<Review> reviewService, IMovieRepository movieRepository, IService<Category> categoryService) : base(repository, unitOfWork)
         {
-            _movieService = movieService;
             _mapper = mapper;
             _directorService = directorService;
             _producerService = producerService;
@@ -37,14 +30,14 @@ namespace MovieDB.Service.Services
             _categoryService = categoryService;
         }
 
-        public async Task<List<MovieGetDto>> getAllData()
+        public async Task<List<MovieGetAllDto>> getAllData()
         {
             var data = await _movieRepository.GetAllWithData();
-            var dataDto=_mapper.Map<List<MovieGetDto>>(data);
+            var dataDto = _mapper.Map<List<MovieGetAllDto>>(data);
             int count = 0;
-            foreach(Movie movie in data)
+            foreach (Movie movie in data)
             {
-                dataDto[count].Categories= new List<CategoryGetDto>();
+                dataDto[count].Categories = new List<CategoryGetDto>();
                 dataDto[count].Producers = new List<ProducerGetDto>();
                 dataDto[count].Awards = new List<AwardGetDto>();
                 dataDto[count].Performsers = new List<PerformerGetDto>();
@@ -52,7 +45,7 @@ namespace MovieDB.Service.Services
                 foreach (MovieCategory category in movie.MovieCategory)
                 {
                     int categoryId = category.CategoryId;
-                    var categoryMapped=_mapper.Map<CategoryGetDto>(await _categoryService.Where(x => x.Id == categoryId).AsNoTracking().FirstOrDefaultAsync());
+                    var categoryMapped = _mapper.Map<CategoryGetDto>(await _categoryService.Where(x => x.Id == categoryId).AsNoTracking().FirstOrDefaultAsync());
                     dataDto[count].Categories.Add(categoryMapped);
                 }
                 foreach (MovieDirector director in movie.MovieDirector)
@@ -85,19 +78,19 @@ namespace MovieDB.Service.Services
                     var reviewVar = await _reviewService.Where(x => x.Id == reviewId).AsNoTracking().FirstOrDefaultAsync();
                     dataDto[count].Score += reviewVar.Score;
                 }
-                if (movie.Reviews != null&&movie.Reviews.Count!=0)
+                if (movie.Reviews != null && movie.Reviews.Count != 0)
                     dataDto[count].Score /= data[count].Reviews.Count();
                 count++;
             }
             return dataDto;
         }
 
-        public async Task<MovieGetDto> GetAllWithDataById(int id)
+        public async Task<MovieGetAllDto> GetAllWithDataById(int id)
         {
             var data = await _movieRepository.GetAllWithDataById(id);
-            if(data == null)
+            if (data == null)
                 return null;
-            var dataDto = _mapper.Map<MovieGetDto>(data);
+            var dataDto = _mapper.Map<MovieGetAllDto>(data);
             dataDto.Score = 0;
             dataDto.Categories = new List<CategoryGetDto>();
             dataDto.Producers = new List<ProducerGetDto>();
@@ -134,14 +127,14 @@ namespace MovieDB.Service.Services
                 var performerMapped = _mapper.Map<PerformerGetDto>(await _performerService.Where(x => x.Id == performerId).AsNoTracking().FirstOrDefaultAsync());
                 dataDto.Performsers.Add(performerMapped);
             }
-            foreach(Review review in data.Reviews)
+            foreach (Review review in data.Reviews)
             {
                 int reviewId = review.Id;
                 var reviewVar = await _reviewService.Where(x => x.Id == reviewId).AsNoTracking().FirstOrDefaultAsync();
                 dataDto.Score += reviewVar.Score;
             }
-            if(data.Reviews != null && data.Reviews.Count != 0)
-                dataDto.Score/=data.Reviews.Count();
+            if (data.Reviews != null && data.Reviews.Count != 0)
+                dataDto.Score /= data.Reviews.Count();
             return dataDto;
         }
     }

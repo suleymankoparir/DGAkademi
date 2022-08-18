@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieDB.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220817110241_init")]
+    [Migration("20220818152132_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,15 +32,17 @@ namespace MovieDB.Repository.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AwardTypeId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)");
 
-                    b.Property<string>("Type")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AwardTypeId");
 
                     b.ToTable("Awards");
 
@@ -48,140 +50,180 @@ namespace MovieDB.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Oscar Best Picture",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Picture"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Oscar Best Director",
-                            Type = "Director"
+                            AwardTypeId = 4,
+                            Name = "Oscar Best Director"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Oscar Best Actor",
-                            Type = "Male"
+                            AwardTypeId = 2,
+                            Name = "Oscar Best Actor"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Oscar Best Actress",
-                            Type = "Female"
+                            AwardTypeId = 3,
+                            Name = "Oscar Best Actress"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Oscar Best Cinematography",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Cinematography"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Oscar Best Production Desgin",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Production Desgin"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Oscar Best Adapted Screenplay",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Adapted Screenplay"
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Oscar Best Sound",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Sound"
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Oscar Best Animated Short Film",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Animated Short Film"
                         },
                         new
                         {
                             Id = 10,
-                            Name = "Oscar Best Live Action Short Film",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Live Action Short Film"
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Oscar Best Film Editing",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Film Editing"
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Oscar Best Original Score",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Original Score"
                         },
                         new
                         {
                             Id = 13,
-                            Name = "Oscar Best Original Song",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Original Song"
                         },
                         new
                         {
                             Id = 14,
-                            Name = "Oscar Best Supporting Actor",
-                            Type = "Male"
+                            AwardTypeId = 2,
+                            Name = "Oscar Best Supporting Actor"
                         },
                         new
                         {
                             Id = 15,
-                            Name = "Oscar Best Supporting Actress",
-                            Type = "Female"
+                            AwardTypeId = 3,
+                            Name = "Oscar Best Supporting Actress"
                         },
                         new
                         {
                             Id = 16,
-                            Name = "Oscar Best Visual Effects",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Visual Effects"
                         },
                         new
                         {
                             Id = 17,
-                            Name = "Oscar Best Original Screenplay",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Original Screenplay"
                         },
                         new
                         {
                             Id = 18,
-                            Name = "Oscar Best Documentary Short Film",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Documentary Short Film"
                         },
                         new
                         {
                             Id = 19,
-                            Name = "Oscar Best Documentary Feature Film",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Documentary Feature Film"
                         },
                         new
                         {
                             Id = 20,
-                            Name = "Oscar Best International Feature Film",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best International Feature Film"
                         },
                         new
                         {
                             Id = 21,
-                            Name = "Oscar Best Custome Design",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Custome Design"
                         },
                         new
                         {
                             Id = 22,
-                            Name = "Oscar Best Makeup and Hairstyling",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Makeup and Hairstyling"
                         },
                         new
                         {
                             Id = 23,
-                            Name = "Oscar Best Animated Feature Film",
-                            Type = "Movie"
+                            AwardTypeId = 1,
+                            Name = "Oscar Best Animated Feature Film"
+                        });
+                });
+
+            modelBuilder.Entity("MovieDB.Core.Models.AwardType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AwardsType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Movie"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Male"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Female"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Director"
                         });
                 });
 
@@ -378,68 +420,68 @@ namespace MovieDB.Repository.Migrations
                         {
                             MovieId = 1,
                             AwardId = 1,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(106)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7320)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 2,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(109),
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7322),
                             DirectorId = 2
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 7,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(110)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7323)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 13,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(111)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7323)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 16,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(112)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7324)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 22,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(112)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7325)
                         },
                         new
                         {
                             MovieId = 2,
                             AwardId = 1,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(113)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7325)
                         },
                         new
                         {
                             MovieId = 2,
                             AwardId = 17,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(114)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7326)
                         },
                         new
                         {
                             MovieId = 3,
                             AwardId = 1,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(114)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7327)
                         },
                         new
                         {
                             MovieId = 3,
                             AwardId = 16,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(115)
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7327)
                         },
                         new
                         {
                             MovieId = 3,
                             AwardId = 3,
-                            Date = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(116),
+                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7328),
                             PerformerId = 1
                         });
                 });
@@ -704,7 +746,7 @@ namespace MovieDB.Repository.Migrations
                         {
                             Id = 1,
                             MovieId = 3,
-                            Since = new DateTime(2022, 8, 17, 11, 2, 40, 764, DateTimeKind.Utc).AddTicks(1014)
+                            Since = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(8436)
                         });
                 });
 
@@ -876,6 +918,17 @@ namespace MovieDB.Repository.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MovieDB.Core.Models.Award", b =>
+                {
+                    b.HasOne("MovieDB.Core.Models.AwardType", "AwardType")
+                        .WithMany("Awards")
+                        .HasForeignKey("AwardTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AwardType");
+                });
+
             modelBuilder.Entity("MovieDB.Core.Models.MovieAward", b =>
                 {
                     b.HasOne("MovieDB.Core.Models.Award", "Award")
@@ -1016,6 +1069,11 @@ namespace MovieDB.Repository.Migrations
             modelBuilder.Entity("MovieDB.Core.Models.Award", b =>
                 {
                     b.Navigation("MovieAward");
+                });
+
+            modelBuilder.Entity("MovieDB.Core.Models.AwardType", b =>
+                {
+                    b.Navigation("Awards");
                 });
 
             modelBuilder.Entity("MovieDB.Core.Models.Category", b =>

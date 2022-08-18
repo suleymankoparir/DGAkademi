@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MovieDB.Core.Models
+﻿namespace MovieDB.Core.Models
 {
-    public class User:BaseEntity
+    public class User : BaseEntity
     {
         public string Username { get; set; }
         public string Email { get; set; }

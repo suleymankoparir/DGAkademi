@@ -10,7 +10,8 @@ namespace MovieDB.Repository
         public DbSet<Category> Categories { get; set; }
         public DbSet<Director> Directors { get; set; }
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<MovieAward> MoviesAwards { get; set;}
+        public DbSet<MovieAward> MoviesAwards { get; set; }
+        public DbSet<AwardType> AwardsType { get; set; }
         public DbSet<MovieCategory> MoviesCategories { get; set; }
         public DbSet<MovieDirector> MovieDirectors { get; set; }
         public DbSet<MoviePerformer> MoviePerformers { get; set; }

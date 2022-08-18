@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieDB.Core.DTOs;
@@ -26,9 +25,10 @@ namespace MovieDB.API.Controllers
         private readonly IService<MovieProducer> _movieProducerService;
         private readonly IService<MovieDirector> _movieDirectorService;
         private readonly IService<MoviePerformer> _moviePerformerService;
+        private readonly IService<AwardType> _awardTypeService;
         private readonly IMapper _mapper;
 
-        public MovieController(IMovieService service, IMapper mapper, IService<Category> categoryService, IService<Movie> movieService, IService<Director> directorService, IService<Producer> producerService, IService<Award> awardService, IService<Performer> performerService, IService<MovieAward> movieAwardService, IService<MovieCategory> movieCategoryService, IService<MovieProducer> movieProducerService, IService<MovieDirector> movieDirectorService, IService<MoviePerformer> moviePerformerService)
+        public MovieController(IMovieService service, IMapper mapper, IService<Category> categoryService, IService<Movie> movieService, IService<Director> directorService, IService<Producer> producerService, IService<Award> awardService, IService<Performer> performerService, IService<MovieAward> movieAwardService, IService<MovieCategory> movieCategoryService, IService<MovieProducer> movieProducerService, IService<MovieDirector> movieDirectorService, IService<MoviePerformer> moviePerformerService, IService<AwardType> awardTypeService)
         {
             _service = service;
             _mapper = mapper;
@@ -43,6 +43,7 @@ namespace MovieDB.API.Controllers
             _movieProducerService = movieProducerService;
             _movieDirectorService = movieDirectorService;
             _moviePerformerService = moviePerformerService;
+            _awardTypeService = awardTypeService;
         }
         #region Crud Endpoints
         [HttpGet]
@@ -215,29 +216,31 @@ namespace MovieDB.API.Controllers
             if (movie == null) ModelState.AddModelError("Movie", "Movie not found");
             if (award == null) ModelState.AddModelError("Award", "Award not found");
             if (movieAward != null) return Conflict("Already exist");
-            if(movieAwardDto.PerformerId != null)
+            var awardType=_awardTypeService.Where(x=>x.Id==award.AwardTypeId).AsNoTracking().FirstOrDefault();
+            if (movieAwardDto.PerformerId != null)
             {
                 var performer = await _performerService.Where(x => x.Id == movieAwardDto.PerformerId).AsNoTracking().FirstOrDefaultAsync();
-                if (performer == null) {
-                    ModelState.AddModelError("Performer", "Performer not found");
-                }
-                else 
+                if (performer == null)
                 {
-                    if (award.Type != performer.Gender) ModelState.AddModelError("Award Gender", "Performer is not suitable for this award");
-                    var moviePerformer = await _moviePerformerService.Where(x => x.MovieId == movieAwardDto.MovieId && x.PerformerId == movieAwardDto.PerformerId).AsNoTracking().FirstOrDefaultAsync();
-                    if (moviePerformer == null) ModelState.AddModelError("Performer Movie", "The performer does not act in this movie");
-                } 
-            }
-            if(movieAwardDto.DirectorId != null)
-            {
-                var director = await _directorService.Where(x => x.Id == movieAwardDto.DirectorId).AsNoTracking().FirstOrDefaultAsync();
-                if (director == null) 
-                { 
-                    ModelState.AddModelError("Director", "Director not found"); 
+                    ModelState.AddModelError("Performer", "Performer not found");
                 }
                 else
                 {
-                    if (award.Type != "Director") ModelState.AddModelError("Award Director", "Director is not suitable for this award");
+                    if (awardType.Name != performer.Gender) ModelState.AddModelError("Award Gender", "Performer is not suitable for this award");
+                    var moviePerformer = await _moviePerformerService.Where(x => x.MovieId == movieAwardDto.MovieId && x.PerformerId == movieAwardDto.PerformerId).AsNoTracking().FirstOrDefaultAsync();
+                    if (moviePerformer == null) ModelState.AddModelError("Performer Movie", "The performer does not act in this movie");
+                }
+            }
+            if (movieAwardDto.DirectorId != null)
+            {
+                var director = await _directorService.Where(x => x.Id == movieAwardDto.DirectorId).AsNoTracking().FirstOrDefaultAsync();
+                if (director == null)
+                {
+                    ModelState.AddModelError("Director", "Director not found");
+                }
+                else
+                {
+                    if (awardType.Name != "Director") ModelState.AddModelError("Award Director", "Director is not suitable for this award");
                     var movieDirector = await _movieDirectorService.Where(x => x.MovieId == movieAwardDto.MovieId && x.DirectorId == movieAwardDto.DirectorId).AsNoTracking().FirstOrDefaultAsync();
                     if (movieDirector == null) ModelState.AddModelError("Director Movie", "The director does not direct this movie");
                 }
@@ -251,7 +254,7 @@ namespace MovieDB.API.Controllers
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteAward(MovieAwardDeleteDto movieAwardDeleteDto)
         {
-            var movieAward=await _movieAwardService.Where(x=>x.MovieId==movieAwardDeleteDto.MovieId &&x.AwardId==movieAwardDeleteDto.AwardId).AsNoTracking().FirstOrDefaultAsync();
+            var movieAward = await _movieAwardService.Where(x => x.MovieId == movieAwardDeleteDto.MovieId && x.AwardId == movieAwardDeleteDto.AwardId).AsNoTracking().FirstOrDefaultAsync();
             if (movieAward == null) return NotFound();
             await _movieAwardService.RemoveAsync(movieAward);
             return Ok();

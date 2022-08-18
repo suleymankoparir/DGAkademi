@@ -1,3 +1,5 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
@@ -5,14 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MovieDB.API.Filters;
-using MovieDB.Core.Repositories;
-using MovieDB.Core.Services;
-using MovieDB.Core.UnitOfWorks;
+using MovieDB.API.Modules;
 using MovieDB.Repository;
-using MovieDB.Repository.Repositories;
-using MovieDB.Repository.UnitOfWorks;
 using MovieDB.Service.Mapping;
-using MovieDB.Service.Services;
 using MovieDB.Service.Validations;
 using System.Reflection;
 using System.Text;
@@ -33,7 +30,11 @@ builder.Services.AddControllers(options =>
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieProducerDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieDirectorDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieAwardDtoValidator>())
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieAwardDeleteDtoValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MovieAwardDeleteDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<NameDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UpdateNameDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<AwardAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<AwardUpdateDtoValidator>());
 #pragma warning restore CS0618 // Type or member is obsolete
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -89,13 +90,6 @@ builder.Services.AddSwaggerGen(c =>
 }
 );
 #endregion
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
-
-builder.Services.AddScoped<IMovieService, MovieService>();
-builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
@@ -108,6 +102,10 @@ builder.Services.AddDbContext<AppDbContext>(x =>
     });
 });
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,6 +1,6 @@
 ﻿namespace MovieDB.Core.Models
 {
-    public class Movie:BaseEntity
+    public class Movie : BaseEntity
     {
         public DateTime ReleaseDate { get; set; }
         public decimal Budget { get; set; }

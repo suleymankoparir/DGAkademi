@@ -12,6 +12,7 @@ namespace MovieDB.Repository.Seeds
                 new User
                 {
                     Id = 1,
+                    Username = "suleymankoparir",
                     Name = "Süleyman Koparır",
                     Email = "suleymankoparir@gmail.com",
                     Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a"
@@ -19,6 +20,7 @@ namespace MovieDB.Repository.Seeds
                 new User
                 {
                     Id = 2,
+                    Username = "johndoe",
                     Name = "John Doe",
                     Email = "johndoe@gmail.com",
                     Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a"

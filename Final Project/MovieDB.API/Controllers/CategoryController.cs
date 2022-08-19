@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieDB.Core.DTOs;
 using MovieDB.Core.Models;
@@ -11,20 +12,36 @@ namespace MovieDB.API.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _service;
+        private readonly IMapper _mapper;
 
-        public CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService, IMapper mapper)
         {
             _service = categoryService;
+            _mapper = mapper;
         }
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
+        {
+            var data = await _service.GetAll().ToListAsync();
+            var mapped = _mapper.Map<List<CategoryGetDto>>(data);
+            return Ok(mapped);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var idControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
+            if (idControl == null) return NotFound("Category not found");
+            var mapped = _mapper.Map<CategoryGetDto>(idControl);
+            return Ok(mapped);
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllData()
         {
             var data = await _service.getAllData();
             return Ok(data);
         }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetDataById(int id)
         {
             var nameControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
             if (nameControl == null) return NotFound("Category not found");

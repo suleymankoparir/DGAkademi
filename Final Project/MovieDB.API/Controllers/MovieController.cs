@@ -49,15 +49,30 @@ namespace MovieDB.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            var data = await _service.GetAll().ToListAsync();
+            var mapped = _mapper.Map<List<MovieGetDto>>(data);
+            return Ok(mapped);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var idControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
+            if (idControl == null) return NotFound("Movie not found");
+            var mapped = _mapper.Map<MovieGetDto>(idControl);
+            return Ok(mapped);
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllData()
+        {
             var data = await _service.getAllData();
             return Ok(data);
         }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetAll(int id)
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetDataById(int id)
         {
             var data = await _service.GetAllWithDataById(id);
             if (data == null)
-                return NotFound();
+                return NotFound("Movie not found");
             return Ok(data);
         }
         [HttpPost]
@@ -71,7 +86,7 @@ namespace MovieDB.API.Controllers
         public async Task<IActionResult> Update(MovieUpdateDto movieUpdateDto)
         {
             var data = await _service.Where(x => x.Id == movieUpdateDto.Id).AsNoTracking().FirstOrDefaultAsync();
-            if (data == null) return NotFound();
+            if (data == null) return NotFound("Movie not found");
 
             var mapped = _mapper.Map<Movie>(movieUpdateDto);
             await _service.UpdateAsync(mapped);
@@ -81,7 +96,7 @@ namespace MovieDB.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var data = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
-            if (data == null) return NotFound();
+            if (data == null) return NotFound("Movie not found");
 
             await _service.RemoveAsync(data);
             return Ok();

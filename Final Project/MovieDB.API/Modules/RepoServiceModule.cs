@@ -33,6 +33,15 @@ namespace MovieDB.API.Modules
             builder.RegisterType<PerformerRepository>().As<IPerformerRepository>();
             builder.RegisterType<PerformerService>().As<IPerformerService>();
 
+            builder.RegisterType<DirectorRepository>().As<IDirectorRepository>();
+            builder.RegisterType<DirectorService>().As<IDirectorService>();
+
+            builder.RegisterType<AwardTypeRepository>().As<IAwardTypeRepository>();
+            builder.RegisterType<AwardTypeService>().As<IAwardTypeService>();
+
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
+            builder.RegisterType<UserService>().As<IUserService>();
+
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
 

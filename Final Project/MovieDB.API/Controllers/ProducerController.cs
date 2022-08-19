@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieDB.Core.DTOs;
 using MovieDB.Core.Models;
@@ -11,19 +12,36 @@ namespace MovieDB.API.Controllers
     public class ProducerController : ControllerBase
     {
         private readonly IProducerService _service;
+        private readonly IMapper _mapper;
 
-        public ProducerController(IProducerService service)
+        public ProducerController(IProducerService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var data = await _service.getAllData();
-            return Ok(data);
+            var data = await _service.GetAll().ToListAsync();
+            var mapped = _mapper.Map<List<ProducerGetDto>>(data);
+            return Ok(mapped);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
+        {
+            var idControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
+            if (idControl == null) return NotFound("Producer not found");
+            var mapped = _mapper.Map<ProducerGetDto>(idControl);
+            return Ok(mapped);
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllData()
+        {
+            var data = await _service.getAllData();
+            return Ok(data);
+        }
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetDataById(int id)
         {
             var nameControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
             if (nameControl == null) return NotFound("Producer not found");

@@ -9,3 +9,4 @@ C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Core\obj\Debug\net6.0\Mov
 C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Core\obj\Debug\net6.0\MovieDB.Core.dll
 C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Core\obj\Debug\net6.0\ref\MovieDB.Core.dll
 C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Core\obj\Debug\net6.0\MovieDB.Core.pdb
+C:\Users\suley\Desktop\DGAkademi\Final Project\MovieDB.Core\obj\Debug\net6.0\MovieDB.Core.csproj.AssemblyReference.cache

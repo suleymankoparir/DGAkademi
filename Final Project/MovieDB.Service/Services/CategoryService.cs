@@ -19,7 +19,7 @@ namespace MovieDB.Service.Services
             _mapper = mapper;
             _movieService = movieService;
         }
-
+        
         public async Task<List<CategoryGetAllDto>> getAllData()
         {
             var categories = await _repository.GetAllWithData();

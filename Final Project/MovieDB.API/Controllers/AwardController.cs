@@ -25,11 +25,26 @@ namespace MovieDB.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var data = await _service.getAllData();
-            return Ok(data);
+            var data = await _service.GetAll().ToListAsync();
+            var mapped = _mapper.Map<List<AwardGetDto>>(data);
+            return Ok(mapped);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
+        {
+            var idControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
+            if (idControl == null) return NotFound("Award not found");
+            var mapped = _mapper.Map<AwardGetDto>(idControl);
+            return Ok(mapped);
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAllData()
+        {
+            var data = await _service.getAllData();
+            return Ok(data);
+        }
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetDataById(int id)
         {
             var nameControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
             if (nameControl == null) return NotFound("Award not found");

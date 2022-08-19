@@ -34,7 +34,13 @@ builder.Services.AddControllers(options =>
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<NameDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UpdateNameDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<AwardAddDtoValidator>())
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<AwardUpdateDtoValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<AwardUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PerformerUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PerformerAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DirectorAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DirectorUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserUpdateDtoValidator>());
 #pragma warning restore CS0618 // Type or member is obsolete
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>

@@ -13,7 +13,7 @@ using W_03.Repository;
 namespace W_03.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220819192408_init")]
+    [Migration("20220822095444_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,6 +104,32 @@ namespace W_03.Repository.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4339),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailId = 1,
+                            PaidPrice = 200m,
+                            Price = 500m,
+                            Tax = 50m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4340),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DetailId = 2,
+                            PaidPrice = 100m,
+                            Price = 600m,
+                            Tax = 150m,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.ProductCategory", b =>
@@ -131,6 +157,24 @@ namespace W_03.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4037),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Electronic",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4047),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Furniture",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.ProductDetail", b =>
@@ -159,6 +203,26 @@ namespace W_03.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4239),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Gaming laptop",
+                            Name = "Acer Laptop",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4240),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "150x80 table",
+                            Name = "Table",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.ProductUserPermission", b =>
@@ -192,6 +256,53 @@ namespace W_03.Repository.Migrations
                     b.HasIndex("UserPermissionId");
 
                     b.ToTable("ProductUserPermissions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4438),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4441),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4442),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 3
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.Sale", b =>
@@ -225,6 +336,35 @@ namespace W_03.Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Sales");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4586),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4587),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 1,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4588),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProductId = 2,
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.User", b =>
@@ -261,6 +401,38 @@ namespace W_03.Repository.Migrations
                     b.HasIndex("UserPermissionId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4866),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "suleymankoparir@gmail.com",
+                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4867),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "johndoe@gmail.com",
+                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4868),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "rondoe@gmail.com",
+                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserPermissionId = 3
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.UserInformation", b =>
@@ -310,6 +482,47 @@ namespace W_03.Repository.Migrations
                         .IsUnique();
 
                     b.ToTable("UserInformations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "İstanbul",
+                            Country = "Türkiye",
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4678),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullAddress = "İstanbul Bahçelievler",
+                            Name = "Süleyman",
+                            Surname = "Koparır",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "İstanbul",
+                            Country = "Türkiye",
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4680),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullAddress = "İstanbul Bahçelievler",
+                            Name = "John",
+                            Surname = "Doe",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "İstanbul",
+                            Country = "Türkiye",
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4681),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullAddress = "İstanbul Bahçelievler",
+                            Name = "Ron",
+                            Surname = "Doe",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.UserPermission", b =>
@@ -337,6 +550,32 @@ namespace W_03.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserPermissions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4773),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Gold",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4774),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Platin",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4775),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Chromium",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.Product", b =>

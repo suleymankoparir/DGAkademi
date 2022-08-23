@@ -21,8 +21,4 @@
     <ProjectReference Include="..\W-03.Core\W-03.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Seeds\" />
-  </ItemGroup>
-
 </Project>

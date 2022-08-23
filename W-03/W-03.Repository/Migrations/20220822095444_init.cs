@@ -217,6 +217,85 @@ namespace W_03.Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "ProductCategories",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Name", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4037), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4047), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Furniture", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPermissions",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Name", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4773), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Gold", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4774), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Platin", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4775), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Chromium", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "CreatedAt", "DeletedAt", "DetailId", "PaidPrice", "Price", "Tax", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4339), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 200m, 500m, 50m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4340), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 100m, 600m, 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Email", "Password", "UpdatedAt", "UserPermissionId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4866), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "suleymankoparir@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4867), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4868), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "rondoe@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductDetails",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Description", "Name", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4239), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Gaming laptop", "Acer Laptop", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4240), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "150x80 table", "Table", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductUserPermissions",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "ProductId", "UpdatedAt", "UserPermissionId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4438), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 4, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4441), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 5, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4442), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Sales",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "ProductId", "UpdatedAt", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4586), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4587), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4588), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserInformations",
+                columns: new[] { "Id", "City", "Country", "CreatedAt", "DeletedAt", "FullAddress", "Name", "Surname", "UpdatedAt", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "İstanbul", "Türkiye", new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4678), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "Süleyman", "Koparır", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, "İstanbul", "Türkiye", new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4680), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "John", "Doe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 3, "İstanbul", "Türkiye", new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4681), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "Ron", "Doe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_PreRegistrations_Email",
                 table: "PreRegistrations",

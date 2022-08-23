@@ -1,10 +1,15 @@
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using W_03.API.Filters;
 using W_03.API.Middlewares;
+using W_03.Core.Entities;
 using W_03.Core.Repositories;
 using W_03.Core.Services;
 using W_03.Core.UnitOfWorks;
@@ -13,6 +18,7 @@ using W_03.Repository.Repositories;
 using W_03.Repository.UnitOfWorks;
 using W_03.Service.Mapping;
 using W_03.Service.Services;
+using W_03.Service.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +39,25 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
+#pragma warning disable CS0618 // Type or member is obsolete
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(new ValidateFilterAttribute());
+})
+#pragma warning restore CS0618 // Type or member is obsolete
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserLoginViewValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PreRegistrationViewValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PreRegisteredUserRegistrationViewValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserInformationUpdateViewValidator>());
+
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
+
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -90,7 +115,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCustomException();
+//app.UseCustomException();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -95,19 +95,16 @@ namespace MovieDB.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Roles",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Username = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
-                    Password = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
-                    Name = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,30 +244,26 @@ namespace MovieDB.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reviews",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    MovieId = table.Column<int>(type: "integer", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    Score = table.Column<int>(type: "integer", nullable: false),
-                    Comment = table.Column<string>(type: "text", nullable: false)
+                    Username = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
+                    Password = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
+                    RoleId = table.Column<int>(type: "integer", nullable: false),
+                    RefreshToken = table.Column<string>(type: "text", nullable: true),
+                    TokenEndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Name = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reviews_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Reviews_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Users_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -310,6 +303,35 @@ namespace MovieDB.Repository.Migrations
                         column: x => x.PerformerId,
                         principalTable: "Performers",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    MovieId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Score = table.Column<int>(type: "integer", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Movies_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Reviews_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -385,12 +407,12 @@ namespace MovieDB.Repository.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Email", "Name", "Password", "Username" },
+                table: "Roles",
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "suleymankoparir@gmail.com", "Süleyman Koparır", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", null },
-                    { 2, "johndoe@gmail.com", "John Doe", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", null }
+                    { 1, "Admin" },
+                    { 2, "User" }
                 });
 
             migrationBuilder.InsertData(
@@ -475,17 +497,15 @@ namespace MovieDB.Repository.Migrations
             migrationBuilder.InsertData(
                 table: "Populatiries",
                 columns: new[] { "Id", "MovieId", "Since" },
-                values: new object[] { 1, 3, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(8436) });
+                values: new object[] { 1, 3, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(3730) });
 
             migrationBuilder.InsertData(
-                table: "Reviews",
-                columns: new[] { "Id", "Comment", "Date", "MovieId", "Score", "UserId" },
+                table: "Users",
+                columns: new[] { "Id", "Email", "Name", "Password", "RefreshToken", "RoleId", "TokenEndDate", "Username" },
                 values: new object[,]
                 {
-                    { 1, "Best movie ever", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 90, 1 },
-                    { 2, "Fantastic movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 100, 2 },
-                    { 3, "Good movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 70, 1 },
-                    { 4, "Bad movie", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 40, 2 }
+                    { 1, "suleymankoparir@gmail.com", "Süleyman Koparır", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", null, 1, null, "suleymankoparir" },
+                    { 2, "johndoe@gmail.com", "John Doe", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", null, 2, null, "johndoe" }
                 });
 
             migrationBuilder.InsertData(
@@ -493,17 +513,28 @@ namespace MovieDB.Repository.Migrations
                 columns: new[] { "AwardId", "MovieId", "Date", "DirectorId", "PerformerId" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7320), null, null },
-                    { 2, 1, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7322), 2, null },
-                    { 7, 1, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7323), null, null },
-                    { 13, 1, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7323), null, null },
-                    { 16, 1, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7324), null, null },
-                    { 22, 1, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7325), null, null },
-                    { 1, 2, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7325), null, null },
-                    { 17, 2, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7326), null, null },
-                    { 1, 3, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7327), null, null },
-                    { 3, 3, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7328), null, 1 },
-                    { 16, 3, new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7327), null, null }
+                    { 1, 1, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2390), null, null },
+                    { 2, 1, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2393), 2, null },
+                    { 7, 1, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2394), null, null },
+                    { 13, 1, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2394), null, null },
+                    { 16, 1, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2395), null, null },
+                    { 22, 1, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2396), null, null },
+                    { 1, 2, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2396), null, null },
+                    { 17, 2, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2397), null, null },
+                    { 1, 3, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2397), null, null },
+                    { 3, 3, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2399), null, 1 },
+                    { 16, 3, new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2398), null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Reviews",
+                columns: new[] { "Id", "Comment", "Date", "MovieId", "Score", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Best movie ever", new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4083), 1, 90, 1 },
+                    { 2, "Fantastic movie", new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4085), 1, 100, 2 },
+                    { 3, "Good movie", new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4086), 2, 70, 1 },
+                    { 4, "Bad movie", new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4087), 3, 40, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -561,6 +592,11 @@ namespace MovieDB.Repository.Migrations
                 name: "IX_Reviews_UserId",
                 table: "Reviews",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_RoleId",
+                table: "Users",
+                column: "RoleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -609,6 +645,9 @@ namespace MovieDB.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "AwardsType");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,17 +11,20 @@ namespace MovieDB.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Admin")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _service;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
+        private readonly IService<Role> _serviceRole;
 
-        public UserController(IUserService service, IMapper mapper, IConfiguration config)
+        public UserController(IUserService service, IMapper mapper, IConfiguration config, IService<Role> roleService)
         {
             _service = service;
             _mapper = mapper;
             _config = config;
+            _serviceRole = roleService;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -51,8 +55,8 @@ namespace MovieDB.API.Controllers
             var data = await _service.GetAllWithDataById(id);
             return Ok(data);
         }
-        [HttpPost]
-        public async Task<IActionResult> Add(UserAddDto userAddDto)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> SignUpAdmin(UserAddDto userAddDto)
         {
             var nameControl = await _service.Where(x => x.Username == userAddDto.Username).AsNoTracking().FirstOrDefaultAsync();
             if (nameControl != null) return Conflict("This username already exist");
@@ -62,6 +66,7 @@ namespace MovieDB.API.Controllers
 
             userAddDto.Password = HashManager.GetPasswordHash(userAddDto.Password, _config["Hash:Key"]);
             var mapped = _mapper.Map<User>(userAddDto);
+            mapped.RoleId = 1;
             await _service.AddAsync(mapped);
             return Ok();
         }
@@ -86,8 +91,12 @@ namespace MovieDB.API.Controllers
             var emailControl = await _service.Where(x => x.Id != userUpdateDto.Id && x.Email == userUpdateDto.Email).AsNoTracking().FirstOrDefaultAsync();
             if (emailControl != null) return Conflict("Email already exist for different id");
 
+            var roleControl=await _serviceRole.Where(x => x.Id==userUpdateDto.RoleId).AsNoTracking().FirstOrDefaultAsync();
+            if (roleControl == null) return NotFound("Role not found");
+
             userUpdateDto.Password = HashManager.GetPasswordHash(userUpdateDto.Password, _config["Hash:Key"]);
             var mapped=_mapper.Map<User>(userUpdateDto);
+
             await _service.UpdateAsync(mapped);
             return Ok();
         }

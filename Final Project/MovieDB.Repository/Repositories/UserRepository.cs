@@ -17,12 +17,12 @@ namespace MovieDB.Repository.Repositories
 
         public async Task<List<User>> GetAllWithData()
         {
-            return await _context.Users.Include(x => x.Reviews).ToListAsync();
+            return await _context.Users.Include(x => x.Reviews).Include(x => x.Role).ToListAsync();
         }
 
         public async  Task<User> GetAllWithDataById(int id)
         {
-            return await _context.Users.Include(x => x.Reviews).Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _context.Users.Include(x => x.Reviews).Include(x=>x.Role).Where(x => x.Id == id).FirstOrDefaultAsync();
         }
     }
 }

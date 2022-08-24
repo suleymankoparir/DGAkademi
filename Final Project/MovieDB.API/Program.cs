@@ -40,7 +40,10 @@ builder.Services.AddControllers(options =>
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DirectorAddDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<DirectorUpdateDtoValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserAddDtoValidator>())
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserUpdateDtoValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserUpdateDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserLoginDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ReviewAddDtoValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ReviewUpdateDtoValidator>());
 #pragma warning restore CS0618 // Type or member is obsolete
 
 builder.Services.Configure<ApiBehaviorOptions>(options =>
@@ -122,6 +125,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

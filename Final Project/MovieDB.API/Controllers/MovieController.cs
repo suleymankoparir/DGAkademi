@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieDB.Core.DTOs;
@@ -47,6 +48,7 @@ namespace MovieDB.API.Controllers
         }
         #region Crud Endpoints
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var data = await _service.GetAll().ToListAsync();
@@ -54,6 +56,7 @@ namespace MovieDB.API.Controllers
             return Ok(mapped);
         }
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetById(int id)
         {
             var idControl = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
@@ -62,12 +65,14 @@ namespace MovieDB.API.Controllers
             return Ok(mapped);
         }
         [HttpGet("[action]")]
+        [Authorize]
         public async Task<IActionResult> GetAllData()
         {
             var data = await _service.getAllData();
             return Ok(data);
         }
         [HttpGet("[action]/{id}")]
+        [Authorize]
         public async Task<IActionResult> GetDataById(int id)
         {
             var data = await _service.GetAllWithDataById(id);
@@ -76,6 +81,7 @@ namespace MovieDB.API.Controllers
             return Ok(data);
         }
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Add(MovieAddDto movieAddDto)
         {
             var movie = _mapper.Map<Movie>(movieAddDto);
@@ -83,6 +89,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(MovieUpdateDto movieUpdateDto)
         {
             var data = await _service.Where(x => x.Id == movieUpdateDto.Id).AsNoTracking().FirstOrDefaultAsync();
@@ -93,6 +100,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var data = await _service.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
@@ -104,6 +112,7 @@ namespace MovieDB.API.Controllers
         #endregion
         #region Category
         [HttpPost("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddCategory(MovieCategoryDto movieCategoryDto)
         {
             var movie = await _service.Where(x => x.Id == movieCategoryDto.MovieId).AsNoTracking().FirstOrDefaultAsync();
@@ -123,6 +132,7 @@ namespace MovieDB.API.Controllers
 
         }
         [HttpDelete("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCategory(MovieCategoryDto movieCategoryDto)
         {
             var movieCategory = await _movieCategoryService.Where(x => x.MovieId == movieCategoryDto.MovieId && x.CategoryId == movieCategoryDto.CategoryId).AsNoTracking().FirstOrDefaultAsync();
@@ -134,6 +144,7 @@ namespace MovieDB.API.Controllers
         #endregion
         #region Performer
         [HttpPost("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddPerformer(MoviePerformerDto moviePerformerDto)
         {
             var movie = await _service.Where(x => x.Id == moviePerformerDto.MovieId).AsNoTracking().FirstOrDefaultAsync();
@@ -153,6 +164,7 @@ namespace MovieDB.API.Controllers
 
         }
         [HttpDelete("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeletePerformer(MoviePerformerDto moviePerformerDto)
         {
             var moviePerformer = await _moviePerformerService.Where(x => x.MovieId == moviePerformerDto.MovieId && x.PerformerId == moviePerformerDto.PerformerId).AsNoTracking().FirstOrDefaultAsync();
@@ -164,6 +176,7 @@ namespace MovieDB.API.Controllers
         #endregion
         #region Director
         [HttpPost("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddDirector(MovieDirectorDto movieDirectorDto)
         {
             var movie = await _service.Where(x => x.Id == movieDirectorDto.MovieId).AsNoTracking().FirstOrDefaultAsync();
@@ -183,6 +196,7 @@ namespace MovieDB.API.Controllers
 
         }
         [HttpDelete("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteDirector(MovieDirectorDto movieDirectorDto)
         {
             var movieDirector = await _movieDirectorService.Where(x => x.MovieId == movieDirectorDto.MovieId && x.DirectorId == movieDirectorDto.DirectorId).AsNoTracking().FirstOrDefaultAsync();
@@ -194,6 +208,7 @@ namespace MovieDB.API.Controllers
         #endregion
         #region Producer
         [HttpPost("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddProducer(MovieProducerDto movieProducerDto)
         {
             var movie = await _service.Where(x => x.Id == movieProducerDto.MovieId).AsNoTracking().FirstOrDefaultAsync();
@@ -213,6 +228,7 @@ namespace MovieDB.API.Controllers
 
         }
         [HttpDelete("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteProducer(MovieProducerDto movieProducerDto)
         {
             var movieProducer = await _movieProducerService.Where(x => x.MovieId == movieProducerDto.MovieId && x.ProducerId == movieProducerDto.ProducerId).AsNoTracking().FirstOrDefaultAsync();
@@ -223,6 +239,7 @@ namespace MovieDB.API.Controllers
         }
         #endregion
         [HttpPost("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddAward(MovieAwardDto movieAwardDto)
         {
             var movie = await _service.Where(x => x.Id == movieAwardDto.MovieId).AsNoTracking().FirstOrDefaultAsync();
@@ -267,6 +284,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpDelete("[action]")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAward(MovieAwardDeleteDto movieAwardDeleteDto)
         {
             var movieAward = await _movieAwardService.Where(x => x.MovieId == movieAwardDeleteDto.MovieId && x.AwardId == movieAwardDeleteDto.AwardId).AsNoTracking().FirstOrDefaultAsync();

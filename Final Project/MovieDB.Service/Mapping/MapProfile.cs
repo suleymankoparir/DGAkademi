@@ -40,6 +40,9 @@ namespace MovieDB.Service.Mapping
             CreateMap<UserUpdateDto, User>();
             CreateMap<User,UserGetDto>();
             CreateMap<AwardType,AwardTypeGetDto>();
+            CreateMap<Review,ReviewDto>();
+            CreateMap<ReviewAddDto,Review>();
+            CreateMap<ReviewUpdateDto,Review>();
         }
     }
 }

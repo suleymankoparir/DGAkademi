@@ -35,6 +35,7 @@ namespace MovieDB.Service.Services
                 {
                     mapped[i].Reviews.Add(_mapper.Map<ReviewGetDto>(item));
                 }
+                mapped[i].Role = users[i].Role.Name;
             }
             return mapped;
         }
@@ -48,6 +49,7 @@ namespace MovieDB.Service.Services
             {
                 mapped.Reviews.Add(_mapper.Map<ReviewGetDto>(item));
             }
+            mapped.Role = user.Role.Name;
             return mapped;
         }
     }

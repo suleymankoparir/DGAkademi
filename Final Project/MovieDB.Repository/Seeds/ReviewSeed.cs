@@ -15,7 +15,8 @@ namespace MovieDB.Repository.Seeds
                     UserId = 1,
                     MovieId = 1,
                     Score = 90,
-                    Comment = "Best movie ever"
+                    Comment = "Best movie ever",
+                    Date = DateTime.UtcNow
                 },
                 new Review
                 {
@@ -23,7 +24,8 @@ namespace MovieDB.Repository.Seeds
                     UserId = 2,
                     MovieId = 1,
                     Score = 100,
-                    Comment = "Fantastic movie"
+                    Comment = "Fantastic movie",
+                    Date = DateTime.UtcNow
                 },
                 new Review
                 {
@@ -31,7 +33,8 @@ namespace MovieDB.Repository.Seeds
                     UserId = 1,
                     MovieId = 2,
                     Score = 70,
-                    Comment = "Good movie"
+                    Comment = "Good movie",
+                    Date = DateTime.UtcNow
                 },
                 new Review
                 {
@@ -39,7 +42,8 @@ namespace MovieDB.Repository.Seeds
                     UserId = 2,
                     MovieId = 3,
                     Score = 40,
-                    Comment = "Bad movie"
+                    Comment = "Bad movie",
+                    Date = DateTime.UtcNow
                 }
             );
         }

@@ -13,6 +13,7 @@ namespace MovieDB.Repository.Configurations
             builder.Property(x => x.Email).IsRequired().HasMaxLength(64);
             builder.Property(x => x.Password).IsRequired().HasMaxLength(64);
             builder.HasMany(x => x.Reviews).WithOne(x => x.User).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.Role).WithMany(x => x.Users).HasForeignKey(x => x.RoleId);
         }
     }
 }

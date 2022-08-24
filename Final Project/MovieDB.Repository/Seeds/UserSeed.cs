@@ -15,7 +15,8 @@ namespace MovieDB.Repository.Seeds
                     Username = "suleymankoparir",
                     Name = "Süleyman Koparır",
                     Email = "suleymankoparir@gmail.com",
-                    Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a"
+                    Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
+                    RoleId = 1,
                 },
                 new User
                 {
@@ -23,7 +24,8 @@ namespace MovieDB.Repository.Seeds
                     Username = "johndoe",
                     Name = "John Doe",
                     Email = "johndoe@gmail.com",
-                    Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a"
+                    Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
+                    RoleId = 2
                 }
             ); ;
         }

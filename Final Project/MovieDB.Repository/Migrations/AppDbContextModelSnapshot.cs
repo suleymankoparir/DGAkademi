@@ -418,68 +418,68 @@ namespace MovieDB.Repository.Migrations
                         {
                             MovieId = 1,
                             AwardId = 1,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7320)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2390)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 2,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7322),
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2393),
                             DirectorId = 2
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 7,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7323)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2394)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 13,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7323)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2394)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 16,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7324)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2395)
                         },
                         new
                         {
                             MovieId = 1,
                             AwardId = 22,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7325)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2396)
                         },
                         new
                         {
                             MovieId = 2,
                             AwardId = 1,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7325)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2396)
                         },
                         new
                         {
                             MovieId = 2,
                             AwardId = 17,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7326)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2397)
                         },
                         new
                         {
                             MovieId = 3,
                             AwardId = 1,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7327)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2397)
                         },
                         new
                         {
                             MovieId = 3,
                             AwardId = 16,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7327)
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2398)
                         },
                         new
                         {
                             MovieId = 3,
                             AwardId = 3,
-                            Date = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(7328),
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(2399),
                             PerformerId = 1
                         });
                 });
@@ -744,7 +744,7 @@ namespace MovieDB.Repository.Migrations
                         {
                             Id = 1,
                             MovieId = 3,
-                            Since = new DateTime(2022, 8, 18, 15, 21, 31, 675, DateTimeKind.Utc).AddTicks(8436)
+                            Since = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(3730)
                         });
                 });
 
@@ -835,7 +835,7 @@ namespace MovieDB.Repository.Migrations
                         {
                             Id = 1,
                             Comment = "Best movie ever",
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4083),
                             MovieId = 1,
                             Score = 90,
                             UserId = 1
@@ -844,7 +844,7 @@ namespace MovieDB.Repository.Migrations
                         {
                             Id = 2,
                             Comment = "Fantastic movie",
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4085),
                             MovieId = 1,
                             Score = 100,
                             UserId = 2
@@ -853,7 +853,7 @@ namespace MovieDB.Repository.Migrations
                         {
                             Id = 3,
                             Comment = "Good movie",
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4086),
                             MovieId = 2,
                             Score = 70,
                             UserId = 1
@@ -862,10 +862,39 @@ namespace MovieDB.Repository.Migrations
                         {
                             Id = 4,
                             Comment = "Bad movie",
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2022, 8, 24, 17, 37, 53, 486, DateTimeKind.Utc).AddTicks(4087),
                             MovieId = 3,
                             Score = 40,
                             UserId = 2
+                        });
+                });
+
+            modelBuilder.Entity("MovieDB.Core.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "User"
                         });
                 });
 
@@ -892,10 +921,21 @@ namespace MovieDB.Repository.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("TokenEndDate")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Username")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
 
@@ -905,14 +945,18 @@ namespace MovieDB.Repository.Migrations
                             Id = 1,
                             Email = "suleymankoparir@gmail.com",
                             Name = "Süleyman Koparır",
-                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a"
+                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
+                            RoleId = 1,
+                            Username = "suleymankoparir"
                         },
                         new
                         {
                             Id = 2,
                             Email = "johndoe@gmail.com",
                             Name = "John Doe",
-                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a"
+                            Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
+                            RoleId = 2,
+                            Username = "johndoe"
                         });
                 });
 
@@ -1064,6 +1108,17 @@ namespace MovieDB.Repository.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MovieDB.Core.Models.User", b =>
+                {
+                    b.HasOne("MovieDB.Core.Models.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("MovieDB.Core.Models.Award", b =>
                 {
                     b.Navigation("MovieAward");
@@ -1113,6 +1168,11 @@ namespace MovieDB.Repository.Migrations
             modelBuilder.Entity("MovieDB.Core.Models.Producer", b =>
                 {
                     b.Navigation("MovieProducer");
+                });
+
+            modelBuilder.Entity("MovieDB.Core.Models.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("MovieDB.Core.Models.User", b =>

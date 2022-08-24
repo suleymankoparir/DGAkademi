@@ -18,6 +18,10 @@ namespace W_03.Service.Mapping
 
             CreateMap<Sale, SaleView>();
             CreateMap<UserInformationUpdateView, UserInformation>();
+            CreateMap<User,JwtUserInfoView>();
+
+            CreateMap<ProductAddView, Product>();
+            CreateMap<ProductAddView, ProductDetail>();
         }
     }
 }

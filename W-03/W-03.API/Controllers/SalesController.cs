@@ -28,11 +28,11 @@ namespace W_03.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(SaleAddView view)
         {
-            var email = GetCurrentUserEmail();
-            if (email == null) return BadRequest("Error in auth");
-            var user = await _serviceUser.Where(x => x.Email == email && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
+            var currentId = GetCurrentUserId();
+            if (currentId == null) return BadRequest("Error in auth");
+            if (currentId != view.UserId) return BadRequest("Forbidden access, user can only operate with her own id");
+            var user = await _serviceUser.Where(x => x.Id == currentId && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
             if (user == null) return NotFound("User not found");
-            if (user.Id != view.UserId) return BadRequest("Forbidden access, user can only operate with her own id");
 
             var product=await _serviceProduct.Where(x => x.Id == view.ProductId && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
             if (product == null) return NotFound("Product not found");
@@ -43,14 +43,15 @@ namespace W_03.API.Controllers
             await _service.AddAsync(new Sale {ProductId=product.Id,UserId=user.Id,CreatedAt=DateTime.UtcNow });
             return Ok();
         }
-        private string? GetCurrentUserEmail()
+        private int? GetCurrentUserId()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             if (identity != null)
             {
                 var userClaims = identity.Claims;
-                string? Email = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
-                return Email;
+                string? idStr = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.SerialNumber)?.Value;
+                if (idStr == null) return null;
+                return Convert.ToInt32(idStr);
             }
             return null;
         }

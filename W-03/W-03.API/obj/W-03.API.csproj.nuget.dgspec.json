@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj": {}
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj": {
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj",
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj",
         "projectName": "W-03.API",
-        "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj",
-        "packagesPath": "C:\\Users\\Eko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.API\\obj\\",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.API\\W-03.API.csproj",
+        "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Eko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj": {
-                "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj"
+              "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj": {
+                "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj"
               }
             }
           }
@@ -77,8 +81,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -90,21 +93,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj": {
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
         "projectName": "W-03.Core",
-        "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
-        "packagesPath": "C:\\Users\\Eko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\obj\\",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
+        "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Eko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -135,8 +142,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -145,21 +151,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj": {
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj",
         "projectName": "W-03.Repository",
-        "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj",
-        "packagesPath": "C:\\Users\\Eko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Repository\\obj\\",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj",
+        "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Repository\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Eko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -173,8 +183,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj": {
-                "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj"
+              "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj": {
+                "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj"
               }
             }
           }
@@ -214,8 +224,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -224,21 +233,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj": {
+    "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj",
+        "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj",
         "projectName": "W-03.Service",
-        "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj",
-        "packagesPath": "C:\\Users\\Eko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Service\\obj\\",
+        "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Service\\W-03.Service.csproj",
+        "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Service\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Eko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -252,8 +265,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj": {
-                "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj"
+              "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj": {
+                "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Repository\\W-03.Repository.csproj"
               }
             }
           }
@@ -291,8 +304,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -301,7 +313,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

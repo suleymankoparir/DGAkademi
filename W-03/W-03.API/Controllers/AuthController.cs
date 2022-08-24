@@ -44,11 +44,13 @@ namespace W_03.API.Controllers
             var auth=await Authenticate(user);
             if (auth!=null)
             {
-                var token = Generate(user);
-                var data = new JwtUserListView();
+                var userEntity = await _service.Include(x => x.UserInformation).Include(x => x.UserPermission).Where(x => x.Email == user.Email && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
+                userEntity.UserInformation.User = null;
+                userEntity.UserPermission.Users = null;
+                var token = Generate(userEntity);
+                var data = _mapper.Map<JwtUserInfoView>(userEntity);
                 data.JwtToken = token;
-                var users = await _service.Where(x => x.DeletedAt == DateTime.MinValue).AsNoTracking().ToListAsync();
-                data.Users = _mapper.Map<List<UserDto>>(users);
+                  
                 return Ok(data);
             }
             return NotFound("Username or password is wrong");
@@ -112,13 +114,14 @@ namespace W_03.API.Controllers
             return Ok();
         }
         #region private Authorize functions
-        private string Generate(UserLoginView user)
+        private string Generate(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = new[]
             {
-                new Claim(ClaimTypes.Email,user.Email)
+                new Claim(ClaimTypes.Email,user.Email),
+                new Claim(ClaimTypes.SerialNumber,user.Id.ToString())
             };
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
                 _config["Jwt:Audience"],

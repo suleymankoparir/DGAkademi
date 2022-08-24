@@ -28,7 +28,7 @@ namespace W_03.Repository.Configurations
             builder.Property(X => X.Tax).IsRequired().HasColumnType("decimal(18,2)");
 
 
-            builder.HasOne(x => x.ProductDetail).WithOne(x => x.Product).HasForeignKey<ProductDetail>(x => x.Id);
+            builder.HasOne(x => x.ProductDetail).WithOne(x => x.Product).HasForeignKey<Product>(x => x.DetailId);
             builder.HasOne(x => x.ProductCategory).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
             builder.HasMany(x=>x.Sales).WithOne(x=>x.Product).HasForeignKey(x => x.ProductId);
             builder.HasMany(x=>x.ProductUserPermissions).WithOne(x=>x.Product).HasForeignKey(x=>x.UserPermissionId);

@@ -45,6 +45,23 @@ namespace W_03.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductDetails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserPermissions",
                 columns: table => new
                 {
@@ -84,6 +101,12 @@ namespace W_03.Repository.Migrations
                         principalTable: "ProductCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductDetails_DetailId",
+                        column: x => x.DetailId,
+                        principalTable: "ProductDetails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,28 +129,6 @@ namespace W_03.Repository.Migrations
                         name: "FK_Users_UserPermissions_UserPermissionId",
                         column: x => x.UserPermissionId,
                         principalTable: "UserPermissions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductDetails",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductDetails_Products_Id",
-                        column: x => x.Id,
-                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -222,37 +223,8 @@ namespace W_03.Repository.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4037), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4047), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Furniture", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "UserPermissions",
-                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Name", "UpdatedAt" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4773), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Gold", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4774), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Platin", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4775), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Chromium", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "CategoryId", "CreatedAt", "DeletedAt", "DetailId", "PaidPrice", "Price", "Tax", "UpdatedAt" },
-                values: new object[,]
-                {
-                    { 1, 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4339), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 200m, 500m, 50m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4340), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 100m, 600m, 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Email", "Password", "UpdatedAt", "UserPermissionId" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4866), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "suleymankoparir@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4867), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4868), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "rondoe@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                    { 1, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4033), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Electronic", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4044), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Furniture", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -260,8 +232,37 @@ namespace W_03.Repository.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Description", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4239), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Gaming laptop", "Acer Laptop", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4240), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "150x80 table", "Table", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4344), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Gaming laptop", "Acer Laptop", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4345), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "150x80 table", "Table", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserPermissions",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Name", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5148), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Gold", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5149), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Platin", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5150), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Chromium", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "CreatedAt", "DeletedAt", "DetailId", "PaidPrice", "Price", "Tax", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4485), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 200m, 500m, 50m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4488), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 100m, 600m, 150m, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Email", "Password", "UpdatedAt", "UserPermissionId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5295), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "suleymankoparir@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5297), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "johndoe@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 3, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5298), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "rondoe@gmail.com", "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -269,11 +270,11 @@ namespace W_03.Repository.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "ProductId", "UpdatedAt", "UserPermissionId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4438), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 4, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4441), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 5, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4442), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                    { 1, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4653), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 2, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4655), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 3, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4656), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 4, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4657), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 5, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4658), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -281,9 +282,9 @@ namespace W_03.Repository.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "ProductId", "UpdatedAt", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4586), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4587), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 3, new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4588), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                    { 1, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4806), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4808), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 3, new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4810), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -291,9 +292,9 @@ namespace W_03.Repository.Migrations
                 columns: new[] { "Id", "City", "Country", "CreatedAt", "DeletedAt", "FullAddress", "Name", "Surname", "UpdatedAt", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "İstanbul", "Türkiye", new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4678), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "Süleyman", "Koparır", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, "İstanbul", "Türkiye", new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4680), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "John", "Doe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 3, "İstanbul", "Türkiye", new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4681), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "Ron", "Doe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                    { 1, "İstanbul", "Türkiye", new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4943), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "Süleyman", "Koparır", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, "İstanbul", "Türkiye", new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5002), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "John", "Doe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 3, "İstanbul", "Türkiye", new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5003), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "İstanbul Bahçelievler", "Ron", "Doe", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -306,6 +307,12 @@ namespace W_03.Repository.Migrations
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_DetailId",
+                table: "Products",
+                column: "DetailId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductUserPermissions_ProductId",
@@ -345,9 +352,6 @@ namespace W_03.Repository.Migrations
                 name: "PreRegistrations");
 
             migrationBuilder.DropTable(
-                name: "ProductDetails");
-
-            migrationBuilder.DropTable(
                 name: "ProductUserPermissions");
 
             migrationBuilder.DropTable(
@@ -364,6 +368,9 @@ namespace W_03.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");
+
+            migrationBuilder.DropTable(
+                name: "ProductDetails");
 
             migrationBuilder.DropTable(
                 name: "UserPermissions");

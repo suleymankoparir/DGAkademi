@@ -37,11 +37,11 @@ namespace W_03.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var email = GetCurrentUserEmail();
-            if (email == null) return BadRequest("Error in auth");
-            var user = await _service.Where(x => x.Email == email && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
+            var currentId = GetCurrentUserId();
+            if (currentId == null) return BadRequest("Error in auth");
+            if (currentId != id) return BadRequest("Forbidden access, user can only operate with her own id");
+            var user = await _service.Where(x => x.Id == currentId && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
             if (user == null) return NotFound("User not found");
-            if (user.Id != id) return BadRequest("Forbidden access, user can only operate with her own id");
 
 
             var userInfo=await _serviceInformation.Where(x => x.UserId == user.Id && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
@@ -58,11 +58,11 @@ namespace W_03.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id,UserInformationUpdateView view)
         {
-            var email = GetCurrentUserEmail();
-            if (email == null) return BadRequest("Error in auth");
-            var user = await _service.Where(x => x.Email == email && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
+            var currentId = GetCurrentUserId();
+            if (currentId == null) return BadRequest("Error in auth");
+            if (currentId != id) return BadRequest("Forbidden access, user can only operate with her own id");
+            var user = await _service.Where(x => x.Id == currentId && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
             if (user == null) return NotFound("User not found");
-            if (user.Id != id) return BadRequest("Forbidden access, user can only operate with her own id");
 
             var userInformation = await _serviceInformation.Where(x => x.UserId == user.Id && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
             var mapped = _mapper.Map<UserInformation>(view);
@@ -77,13 +77,14 @@ namespace W_03.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var email = GetCurrentUserEmail();
-            if (email == null) return BadRequest("Error in auth");
-            var user = await _service.Where(x => x.Email == email && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
+            var currentId = GetCurrentUserId();
+            if (currentId == null) return BadRequest("Error in auth");
+            if (currentId != id) return BadRequest("Forbidden access, user can only operate with her own id");
+            var user = await _service.Where(x => x.Id == currentId && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
             if (user == null) return NotFound("User not found");
-            if (user.Id != id) return BadRequest("Forbidden access, user can only operate with her own id");
 
-            var userInformation = await _serviceInformation.Where(x => x.UserId == user.Id).FirstOrDefaultAsync();
+            var userInformation = await _serviceInformation.Where(x => x.UserId == currentId).FirstOrDefaultAsync();
+
 
             user.DeletedAt = DateTime.UtcNow;
             userInformation.DeletedAt = DateTime.UtcNow;
@@ -91,16 +92,18 @@ namespace W_03.API.Controllers
             await _service.UpdateAsync(user);
             await _serviceInformation.UpdateAsync(userInformation);
 
+
             return Ok();
         }
-        private string? GetCurrentUserEmail()
+        private int? GetCurrentUserId()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             if (identity != null)
             {
                 var userClaims = identity.Claims;
-                string? Email = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
-                return Email;
+                string? idStr = userClaims.FirstOrDefault(x => x.Type == ClaimTypes.SerialNumber)?.Value;
+                if (idStr == null) return null;
+                return Convert.ToInt32(idStr);
             }
             return null;
         }

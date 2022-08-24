@@ -6,6 +6,7 @@ namespace W_03.Core.Services
     {
         IQueryable<T> GetAll();
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
+        IQueryable<T> Include(Expression<Func<T, object>> expression);
         Task<T> GetByIdAsync(int id);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<T> AddAsync(T entity);

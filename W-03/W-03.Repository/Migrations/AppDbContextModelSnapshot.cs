@@ -101,6 +101,9 @@ namespace W_03.Repository.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("DetailId")
+                        .IsUnique();
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -108,7 +111,7 @@ namespace W_03.Repository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4339),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4485),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DetailId = 1,
                             PaidPrice = 200m,
@@ -120,7 +123,7 @@ namespace W_03.Repository.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4340),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4488),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DetailId = 2,
                             PaidPrice = 100m,
@@ -160,7 +163,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4037),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4033),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Electronic",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -168,7 +171,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4047),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4044),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Furniture",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -178,8 +181,11 @@ namespace W_03.Repository.Migrations
             modelBuilder.Entity("W_03.Core.Entities.ProductDetail", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -206,7 +212,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4239),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4344),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Gaming laptop",
                             Name = "Acer Laptop",
@@ -215,7 +221,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4240),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4345),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "150x80 table",
                             Name = "Table",
@@ -259,7 +265,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4438),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4653),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 1,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -268,7 +274,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4655),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 1,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -277,7 +283,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4440),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4656),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 2,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -286,7 +292,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4441),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4657),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 2,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -295,7 +301,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4442),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4658),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 2,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -339,7 +345,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4586),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4806),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 2,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -348,7 +354,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4587),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4808),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 1,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -357,7 +363,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4588),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4810),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = 2,
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -404,7 +410,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4866),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5295),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "suleymankoparir@gmail.com",
                             Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
@@ -414,7 +420,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4867),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5297),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "johndoe@gmail.com",
                             Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
@@ -424,7 +430,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4868),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5298),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "rondoe@gmail.com",
                             Password = "c8ff7f1ad36ae9a23042f006fe88cfd1cd7587d16f0b593eb9b60741ae50899a",
@@ -487,7 +493,7 @@ namespace W_03.Repository.Migrations
                             Id = 1,
                             City = "İstanbul",
                             Country = "Türkiye",
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4678),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(4943),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FullAddress = "İstanbul Bahçelievler",
                             Name = "Süleyman",
@@ -500,7 +506,7 @@ namespace W_03.Repository.Migrations
                             Id = 2,
                             City = "İstanbul",
                             Country = "Türkiye",
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4680),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5002),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FullAddress = "İstanbul Bahçelievler",
                             Name = "John",
@@ -513,7 +519,7 @@ namespace W_03.Repository.Migrations
                             Id = 3,
                             City = "İstanbul",
                             Country = "Türkiye",
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4681),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5003),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FullAddress = "İstanbul Bahçelievler",
                             Name = "Ron",
@@ -553,7 +559,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4773),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5148),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Gold",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -561,7 +567,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4774),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5149),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Platin",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -569,7 +575,7 @@ namespace W_03.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2022, 8, 22, 12, 54, 44, 179, DateTimeKind.Local).AddTicks(4775),
+                            CreatedAt = new DateTime(2022, 8, 24, 12, 56, 17, 742, DateTimeKind.Local).AddTicks(5150),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Chromium",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
@@ -584,18 +590,15 @@ namespace W_03.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProductCategory");
-                });
-
-            modelBuilder.Entity("W_03.Core.Entities.ProductDetail", b =>
-                {
-                    b.HasOne("W_03.Core.Entities.Product", "Product")
-                        .WithOne("ProductDetail")
-                        .HasForeignKey("W_03.Core.Entities.ProductDetail", "Id")
+                    b.HasOne("W_03.Core.Entities.ProductDetail", "ProductDetail")
+                        .WithOne("Product")
+                        .HasForeignKey("W_03.Core.Entities.Product", "DetailId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Product");
+                    b.Navigation("ProductCategory");
+
+                    b.Navigation("ProductDetail");
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.ProductUserPermission", b =>
@@ -660,8 +663,6 @@ namespace W_03.Repository.Migrations
 
             modelBuilder.Entity("W_03.Core.Entities.Product", b =>
                 {
-                    b.Navigation("ProductDetail");
-
                     b.Navigation("ProductUserPermissions");
 
                     b.Navigation("Sales");
@@ -670,6 +671,11 @@ namespace W_03.Repository.Migrations
             modelBuilder.Entity("W_03.Core.Entities.ProductCategory", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("W_03.Core.Entities.ProductDetail", b =>
+                {
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("W_03.Core.Entities.User", b =>

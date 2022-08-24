@@ -20,7 +20,7 @@ namespace W_03.Repository.Configurations
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Description).IsRequired();
 
-            builder.HasOne(x=>x.Product).WithOne(x=>x.ProductDetail).HasForeignKey<ProductDetail>(x=>x.Id);
+            builder.HasOne(x=>x.Product).WithOne(x=>x.ProductDetail).HasForeignKey<Product>(x=>x.DetailId);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using W_03.Core.DTOs;
 
 namespace W_03.API.Middlewares
 {
@@ -17,7 +18,11 @@ namespace W_03.API.Middlewares
                     var statusCode = 500;
                     context.Response.StatusCode = statusCode;
 
-                    var response = new StatusCodeResult(StatusCodes.Status500InternalServerError);
+                    var response = new ExceptionDto
+                    {
+                        StatusCode = statusCode,
+                        Message = exceptionFeature.Error.Message
+                    };
 
                     await context.Response.WriteAsync(JsonSerializer.Serialize(response));
                 });

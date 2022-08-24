@@ -49,7 +49,8 @@ builder.Services.AddControllers(options =>
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PreRegistrationViewValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<PreRegisteredUserRegistrationViewValidator>())
 .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<UserInformationUpdateViewValidator>())
-.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<SaleAddViewValidator>());
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<SaleAddViewValidator>())
+.AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductAddViewValidator>());
 
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.AddTransient<IMailService, MailService>();
@@ -116,7 +117,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseCustomException();
+app.UseCustomException();
 
 app.UseAuthentication();
 

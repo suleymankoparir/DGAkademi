@@ -153,3 +153,6 @@ C:\Users\Eko\Documents\GitHub\DGAkademi\W-03\W-03.API\obj\Debug\net6.0\ref\W-03.
 C:\Users\Eko\Documents\GitHub\DGAkademi\W-03\W-03.API\bin\Debug\net6.0\MailKit.dll
 C:\Users\Eko\Documents\GitHub\DGAkademi\W-03\W-03.API\bin\Debug\net6.0\MimeKit.dll
 C:\Users\Eko\Documents\GitHub\DGAkademi\W-03\W-03.API\bin\Debug\net6.0\BouncyCastle.Crypto.dll
+C:\Users\suley\Desktop\DGAkademi\W-03\W-03.API\bin\Debug\net6.0\MailKit.dll
+C:\Users\suley\Desktop\DGAkademi\W-03\W-03.API\bin\Debug\net6.0\MimeKit.dll
+C:\Users\suley\Desktop\DGAkademi\W-03\W-03.API\bin\Debug\net6.0\BouncyCastle.Crypto.dll

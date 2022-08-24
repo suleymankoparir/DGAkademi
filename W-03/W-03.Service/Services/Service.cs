@@ -68,6 +68,10 @@ namespace W_03.Service.Services
         {
             return _repository.Where(expression);
         }
+        public IQueryable<T> Include(Expression<Func<T, object>> expression)
+        {
+            return _repository.Include(expression);
+        }
     }
 }
 

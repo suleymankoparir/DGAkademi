@@ -59,5 +59,9 @@ namespace W_03.Repository.Repositories
         {
             return _dbSet.Where(expression);
         }
+        public IQueryable<T> Include(Expression<Func<T, object>> expression)
+        {
+            return _dbSet.Include(expression);
+        }
     }
 }

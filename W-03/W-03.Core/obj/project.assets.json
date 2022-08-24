@@ -8,19 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Eko\\.nuget\\packages\\": {}
+    "C:\\Users\\suley\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
+      "projectUniqueName": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
       "projectName": "W-03.Core",
-      "projectPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
-      "packagesPath": "C:\\Users\\Eko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Eko\\Documents\\GitHub\\DGAkademi\\W-03\\W-03.Core\\obj\\",
+      "projectPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\W-03.Core.csproj",
+      "packagesPath": "C:\\Users\\suley\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\suley\\Desktop\\DGAkademi\\W-03\\W-03.Core\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Eko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\suley\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -51,8 +56,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -61,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

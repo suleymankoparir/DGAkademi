@@ -19,6 +19,21 @@ namespace W_03.Service.Validations
             RuleFor(x => x.PaidPrice).NotEmpty().WithMessage("{PropertyName} is requiered.").NotNull().WithMessage("{PropertyName} is requiered.");
             RuleFor(x => x.CategoryId).NotEmpty().WithMessage("{PropertyName} is requiered.").NotNull().WithMessage("{PropertyName} is requiered.");
             RuleFor(x => x.Permissions).NotEmpty().WithMessage("{PropertyName} is requiered.").NotNull().WithMessage("{PropertyName} is requiered.");
+            RuleFor(x => x.Permissions).Custom((data, context) =>
+            {
+                foreach (var item in data)
+                {
+                    if (item == null || item.Id == 0)
+                    {
+                        context.AddFailure("Permission Id is requiered.");
+                        break;
+                    }
+                }
+                    
+                        
+                
+
+            });
         }
     }
 }

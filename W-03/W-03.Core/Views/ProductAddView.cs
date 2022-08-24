@@ -15,6 +15,6 @@ namespace W_03.Core.Views
         public decimal Price { get; set; }
         public decimal PaidPrice { get; set; }
         public decimal Tax { get; set; }
-        public List<PermissionAddDto> Permissions { get; set; }
+        public List<PermissionAddView> Permissions { get; set; }
     }
 }

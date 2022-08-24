@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace W_03.Core.DTOs
 {
-    public class PermissionAddDto
+    public class PermissionAddView
     {
         public int Id { get; set; }
     }

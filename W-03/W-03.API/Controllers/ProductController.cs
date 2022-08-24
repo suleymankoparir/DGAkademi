@@ -88,7 +88,7 @@ namespace W_03.API.Controllers
             var user = await _serviceUser.Where(x => x.Id == currentId && x.DeletedAt == DateTime.MinValue).AsNoTracking().FirstOrDefaultAsync();
             if (user == null) return NotFound("User not found");
 
-            var productPermissionList=await _serviceProductUserPermission.Where(x=>x.UserPermissionId==userId).AsNoTracking().ToListAsync();
+            var productPermissionList=await _serviceProductUserPermission.Where(x=>x.UserPermissionId==user.UserPermissionId).AsNoTracking().ToListAsync();
             var products=new List<Product>();
             foreach (var item in productPermissionList)
             {

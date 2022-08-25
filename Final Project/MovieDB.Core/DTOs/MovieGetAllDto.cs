@@ -8,6 +8,7 @@
         public DateTime ReleaseDate { get; set; }
         public decimal Budget { get; set; }
         public decimal Gross { get; set; }
+        public string MovieTypeName { get; set; }
         public List<CategoryGetDto> Categories { get; set; }
         public List<ProducerGetDto> Producers { get; set; }
         public List<PerformerGetDto> Performsers { get; set; }

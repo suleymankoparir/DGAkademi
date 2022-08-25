@@ -42,6 +42,7 @@ namespace MovieDB.Service.Services
                 dataDto[count].Awards = new List<AwardGetDto>();
                 dataDto[count].Performsers = new List<PerformerGetDto>();
                 dataDto[count].Directors = new List<DirectorGetDto>();
+                dataDto[count].MovieTypeName = movie.MovieType.Name;
                 foreach (MovieCategory category in movie.MovieCategory)
                 {
                     int categoryId = category.CategoryId;
@@ -97,6 +98,7 @@ namespace MovieDB.Service.Services
             dataDto.Awards = new List<AwardGetDto>();
             dataDto.Performsers = new List<PerformerGetDto>();
             dataDto.Directors = new List<DirectorGetDto>();
+            dataDto.MovieTypeName = data.MovieType.Name;
             foreach (MovieCategory category in data.MovieCategory)
             {
                 int categoryId = category.CategoryId;

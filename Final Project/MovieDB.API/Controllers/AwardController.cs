@@ -17,12 +17,14 @@ namespace MovieDB.API.Controllers
         private readonly IAwardService _service;
         private readonly IService<AwardType> _awardTypeService;
         private readonly IMapper _mapper;
+        private readonly IService<MovieType> _movieTypeService;
 
-        public AwardController(IAwardService service, IService<AwardType> awardTypeService, IMapper mapper)
+        public AwardController(IAwardService service, IService<AwardType> awardTypeService, IMapper mapper, IService<MovieType> movieTypeService)
         {
             _service = service;
             _awardTypeService = awardTypeService;
             _mapper = mapper;
+            _movieTypeService = movieTypeService;
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()

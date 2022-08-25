@@ -20,6 +20,7 @@ namespace MovieDB.API.Controllers
         private readonly IService<Producer> _producerService;
         private readonly IService<Award> _awardService;
         private readonly IService<Performer> _performerService;
+        private readonly IService<MovieType> _movieTypeService;
 
         private readonly IService<MovieAward> _movieAwardService;
         private readonly IService<MovieCategory> _movieCategoryService;
@@ -29,7 +30,7 @@ namespace MovieDB.API.Controllers
         private readonly IService<AwardType> _awardTypeService;
         private readonly IMapper _mapper;
 
-        public MovieController(IMovieService service, IMapper mapper, IService<Category> categoryService, IService<Movie> movieService, IService<Director> directorService, IService<Producer> producerService, IService<Award> awardService, IService<Performer> performerService, IService<MovieAward> movieAwardService, IService<MovieCategory> movieCategoryService, IService<MovieProducer> movieProducerService, IService<MovieDirector> movieDirectorService, IService<MoviePerformer> moviePerformerService, IService<AwardType> awardTypeService)
+        public MovieController(IMovieService service, IMapper mapper, IService<Category> categoryService, IService<Movie> movieService, IService<Director> directorService, IService<Producer> producerService, IService<Award> awardService, IService<Performer> performerService, IService<MovieAward> movieAwardService, IService<MovieCategory> movieCategoryService, IService<MovieProducer> movieProducerService, IService<MovieDirector> movieDirectorService, IService<MoviePerformer> moviePerformerService, IService<AwardType> awardTypeService, IService<MovieType> movieTypeService)
         {
             _service = service;
             _mapper = mapper;
@@ -45,6 +46,7 @@ namespace MovieDB.API.Controllers
             _movieDirectorService = movieDirectorService;
             _moviePerformerService = moviePerformerService;
             _awardTypeService = awardTypeService;
+            _movieTypeService = movieTypeService;
         }
         #region Crud Endpoints
         [HttpGet]
@@ -84,6 +86,8 @@ namespace MovieDB.API.Controllers
         [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Add(MovieAddDto movieAddDto)
         {
+            var movieType = await _movieTypeService.GetByIdAsync(movieAddDto.MovieTypeId);
+            if (movieType == null) return NotFound("MovieType not found");
             var movie = _mapper.Map<Movie>(movieAddDto);
             await _service.AddAsync(movie);
             return Ok();
@@ -94,6 +98,9 @@ namespace MovieDB.API.Controllers
         {
             var data = await _service.Where(x => x.Id == movieUpdateDto.Id).AsNoTracking().FirstOrDefaultAsync();
             if (data == null) return NotFound("Movie not found");
+
+            var movieType = await _movieTypeService.GetByIdAsync(movieUpdateDto.MovieTypeId);
+            if (movieType == null) return NotFound("MovieType not found");
 
             var mapped = _mapper.Map<Movie>(movieUpdateDto);
             await _service.UpdateAsync(mapped);
@@ -248,7 +255,11 @@ namespace MovieDB.API.Controllers
             if (movie == null) ModelState.AddModelError("Movie", "Movie not found");
             if (award == null) ModelState.AddModelError("Award", "Award not found");
             if (movieAward != null) return Conflict("Already exist");
-            var awardType=_awardTypeService.Where(x=>x.Id==award.AwardTypeId).AsNoTracking().FirstOrDefault();
+
+            var awardType=await _awardTypeService.Where(x=>x.Id==award.AwardTypeId).AsNoTracking().FirstOrDefaultAsync();
+            var movieType = await _movieTypeService.Where(x => x.Id == movie.MovieTypeId).AsNoTracking().FirstOrDefaultAsync();
+            if (movieType.Id != awardType.MovieTypeId)
+                return BadRequest("MovieTypes does not match");
             if (movieAwardDto.PerformerId != null)
             {
                 var performer = await _performerService.Where(x => x.Id == movieAwardDto.PerformerId).AsNoTracking().FirstOrDefaultAsync();

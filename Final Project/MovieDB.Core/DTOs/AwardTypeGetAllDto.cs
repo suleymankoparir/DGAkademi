@@ -10,6 +10,7 @@ namespace MovieDB.Core.DTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int MovieTypeId { get; set; }
         public List<AwardGetDto> Awards { get; set; }
     }
 }

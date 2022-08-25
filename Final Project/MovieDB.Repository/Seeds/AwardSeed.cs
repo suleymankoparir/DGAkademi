@@ -19,19 +19,19 @@ namespace MovieDB.Repository.Seeds
                 {
                     Id = 2,
                     Name = "Oscar Best Director",
-                    AwardTypeId = 4
+                    AwardTypeId = 5
                 },
                 new Award
                 {
                     Id = 3,
                     Name = "Oscar Best Actor",
-                    AwardTypeId = 2
+                    AwardTypeId = 3
                 },
                 new Award
                 {
                     Id = 4,
                     Name = "Oscar Best Actress",
-                    AwardTypeId = 3
+                    AwardTypeId = 4
                 },
                 new Award
                 {
@@ -91,13 +91,13 @@ namespace MovieDB.Repository.Seeds
                 {
                     Id = 14,
                     Name = "Oscar Best Supporting Actor",
-                    AwardTypeId = 2
+                    AwardTypeId = 3
                 },
                 new Award
                 {
                     Id = 15,
                     Name = "Oscar Best Supporting Actress",
-                    AwardTypeId = 3
+                    AwardTypeId = 4
                 },
                 new Award
                 {
@@ -146,6 +146,12 @@ namespace MovieDB.Repository.Seeds
                     Id = 23,
                     Name = "Oscar Best Animated Feature Film",
                     AwardTypeId = 1
+                },
+                new Award
+                {
+                    Id = 24,
+                    Name = "Best Tv Series",
+                    AwardTypeId= 2
                 }
             );
         }

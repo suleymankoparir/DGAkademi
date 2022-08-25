@@ -17,22 +17,32 @@ namespace MovieDB.Repository.Seeds
                 new AwardType
                 {
                     Id=1,
-                    Name ="Movie"
+                    Name ="Movie",
+                    MovieTypeId = 1,
                 },
                 new AwardType
                 {
-                    Id = 2,
-                    Name = "Male"
+                    Id=2,
+                    Name ="Tv Series",
+                    MovieTypeId=2,
                 },
                 new AwardType
                 {
                     Id = 3,
-                    Name = "Female"
+                    Name = "Male",
+                    MovieTypeId = 1
                 },
                 new AwardType
                 {
                     Id = 4,
-                    Name = "Director"
+                    Name = "Female",
+                    MovieTypeId = 1
+                },
+                new AwardType
+                {
+                    Id = 5,
+                    Name = "Director",
+                    MovieTypeId = 1
                 }
             );
         }

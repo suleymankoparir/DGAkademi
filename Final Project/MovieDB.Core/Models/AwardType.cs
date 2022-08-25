@@ -9,5 +9,7 @@ namespace MovieDB.Core.Models
     public class AwardType:BaseEntity
     {
         public List<Award> Awards { get; set; }
+        public int MovieTypeId { get; set; }
+        public MovieType MovieType { get; set; }
     }
 }

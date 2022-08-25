@@ -19,6 +19,7 @@ namespace MovieDB.Repository.Repositories
                 .Include(x => x.MovieProducer)
                 .Include(x => x.MoviePerformer)
                 .Include(x => x.Reviews)
+                .Include(x => x.MovieType)
                 .ToListAsync();
         }
 
@@ -30,6 +31,7 @@ namespace MovieDB.Repository.Repositories
                 .Include(x => x.MovieDirector)
                 .Include(x => x.MovieProducer)
                 .Include(x => x.MoviePerformer)
+                .Include(x => x.MovieType)
                 .Include(x => x.Reviews).FirstOrDefaultAsync();
         }
     }

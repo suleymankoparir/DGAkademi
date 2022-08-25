@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 
 namespace MovieDB.Repository.Configurations
 {
-    internal class AwardTypeConfiguration : IEntityTypeConfiguration<AwardType>
+    internal class MovieTypeConfiguration : IEntityTypeConfiguration<MovieType>
     {
-        public void Configure(EntityTypeBuilder<AwardType> builder)
+        public void Configure(EntityTypeBuilder<MovieType> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(64);
-            builder.HasMany(x => x.Awards).WithOne(x => x.AwardType).HasForeignKey(x => x.AwardTypeId);
-            builder.HasOne(x=>x.MovieType).WithMany(x=>x.AwardTypes).HasForeignKey(x => x.MovieTypeId);
+            builder.HasIndex(x => x.Name).IsUnique();
+
+            builder.HasMany(x=>x.Movies).WithOne(x=>x.MovieType).HasForeignKey(x=>x.MovieTypeId);
+            builder.HasMany(x => x.AwardTypes).WithOne(x => x.MovieType).HasForeignKey(x => x.MovieTypeId);
         }
     }
 }

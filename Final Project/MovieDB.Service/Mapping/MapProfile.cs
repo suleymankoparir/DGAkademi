@@ -43,6 +43,7 @@ namespace MovieDB.Service.Mapping
             CreateMap<Review,ReviewDto>();
             CreateMap<ReviewAddDto,Review>();
             CreateMap<ReviewUpdateDto,Review>();
+            CreateMap<Popularity, PopularityGetDto>();
         }
     }
 }

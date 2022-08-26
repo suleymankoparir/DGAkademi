@@ -10,7 +10,7 @@ namespace MovieDB.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _service;
@@ -51,6 +51,7 @@ namespace MovieDB.API.Controllers
             return Ok(data);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(NameDto nameDto)
         {
             var nameControl = await _service.Where(x => x.Name == nameDto.Name).AsNoTracking().FirstOrDefaultAsync();
@@ -59,6 +60,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var data = await _service.GetByIdAsync(id);
@@ -68,6 +70,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(UpdateNameDto updateNameDto)
         {
             var dataControl = await _service.GetByIdAsync(updateNameDto.Id);

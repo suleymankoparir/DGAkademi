@@ -11,7 +11,7 @@ namespace MovieDB.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class AwardController : ControllerBase
     {
         private readonly IAwardService _service;
@@ -56,6 +56,7 @@ namespace MovieDB.API.Controllers
             return Ok(data);
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var data = await _service.GetByIdAsync(id);
@@ -65,6 +66,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(AwardAddDto data)
         {
             var nameControl=await _service.Where(x=>x.Name==data.Name).AsNoTracking().FirstOrDefaultAsync();
@@ -79,6 +81,7 @@ namespace MovieDB.API.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(AwardUpdateDto awardUpdateDto)
         {
             var dataControl = await _service.Where(x=>x.Id==awardUpdateDto.Id).AsNoTracking().FirstOrDefaultAsync();

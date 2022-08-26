@@ -11,7 +11,7 @@ namespace MovieDB.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class PerformerController : ControllerBase
     {
         private readonly IPerformerService _service;
@@ -52,6 +52,7 @@ namespace MovieDB.API.Controllers
             return Ok(data);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(PerformerAddDto data)
         {
             var mapped = _mapper.Map<Performer>(data);
@@ -59,6 +60,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var data = await _service.GetByIdAsync(id);
@@ -68,6 +70,7 @@ namespace MovieDB.API.Controllers
             return Ok();
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(PerformerUpdateDto performerUpdateDto)
         {
             var dataControl = await _service.Where(x=>x.Id==performerUpdateDto.Id).AsNoTracking().FirstOrDefaultAsync();

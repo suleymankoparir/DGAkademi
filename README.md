@@ -57,7 +57,7 @@ Migration is done in the Repository layer.
 
 | Url                            | Type        | Jwt | Access Role | Json Format                                                                                                      |
 |--------------------------------|-------------|-----|-------------|------------------------------------------------------------------------------------------------------------------|
-| api/Auth                       | HTTP POST   | No  | Everyone    | {"username": "string","password": "string"}                                                                      |
+| api/Auth                       | HTTP POST   | No  | Everyone    | {"username": "suleymankoparir","password": "password"}                                                                      |
 | api/Auth/SignUp                | HTTP POST   | No  | Everyone    | {"name": "string","username": "string","email": "string@mail.com","password": "string"}                          |
 | api/Auth/RefreshToken          | HTTP POST   | No  | Everyone    | {"jwtToken": "string","refreshToken": "string"}                                                                  |
 |                                |             |     |             |                                                                                                                  |

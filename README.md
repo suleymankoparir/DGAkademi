@@ -65,10 +65,10 @@ Migration is done in the Repository layer.
 | api/Award                      | HTTP PUT    | Yes | Admin       | {"id": 1,"name": "string","awardTypeId": 1}                                                                      |
 | api/Award/{id}                 | HTTP DELETE | Yes | Admin       |                                                                                                                  |
 |                                |             |     |             |                                                                                                                  |
-| api/AwardType                  | HTTP GET    | Yes | Everyone    |                                                                                                                  |
-| api/AwardType/{id}             | HTTP GET    | Yes | Everyone    |                                                                                                                  |
-| api/AwardType/GetAllData       | HTTP GET    | Yes | Everyone    |                                                                                                                  |
-| api/AwardType/GetDataById/{id} | HTTP GET    | Yes | Everyone    |                                                                                                                  |
+| api/AwardType                  | HTTP GET    | Yes | Admin    |                                                                                                                  |
+| api/AwardType/{id}             | HTTP GET    | Yes | Admin    |                                                                                                                  |
+| api/AwardType/GetAllData       | HTTP GET    | Yes | Admin    |                                                                                                                  |
+| api/AwardType/GetDataById/{id} | HTTP GET    | Yes | Admin    |                                                                                                                  |
 | api/AwardType                  | HTTP POST   | Yes | Admin       | {"name": "string","movieTypeId": 1}                                                                              |
 | api/AwardType                  | HTTP PUT    | Yes | Admin       | {"id": 1,"name": "string","movieTypeId": 1}                                                                      |
 | api/AwardType/{id}             | HTTP DELETE | Yes | Admin       |                                                                                                                  |

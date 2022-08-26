@@ -50,7 +50,11 @@ Migration is done in the Repository layer.
 
 
 W03
+
+Heroku url: https://dgakademi-moviedb.herokuapp.com
+
 Migration is done in the Repository layer.
+
 | Url                            | Type        | Jwt | Access Role | Json Format                                                                                                      |
 |--------------------------------|-------------|-----|-------------|------------------------------------------------------------------------------------------------------------------|
 | api/Auth                       | HTTP POST   | No  | Everyone    | {"username": "string","password": "string"}                                                                      |
@@ -129,7 +133,7 @@ Migration is done in the Repository layer.
 | api/Movie/GetAllData           | HTTP GET    | Yes | Everyone    |                                                                                                                  |
 | api/Movie/GetDataById/{id}     | HTTP GET    | Yes | Everyone    |                                                                                                                  |
 | api/Movie                      | HTTP POST   | Yes | Admin       | {"name": "string","movieTypeId": 1,"releaseDate": "2022-08-26","budget": 100,"gross": 100}                       |
-| api/Movie                      | HTTP PUT    | Yes | Admin       | {"id": 1,"name": "string","movieTypeId": 1,"releaseDate": "2022-08-26T11:10:50.036Z","budget": 100,"gross": 100} |
+| api/Movie                      | HTTP PUT    | Yes | Admin       | {"id": 1,"name": "string","movieTypeId": 1,"releaseDate": "2022-08-26","budget": 100,"gross": 100} |
 | api/Movie/{id}                 | HTTP DELETE | Yes | Admin       |                                                                                                                  |
 |                                |             |     |             |                                                                                                                  |
 | api/Movie/AddCategory          | HTTP POST   | Yes | Admin       | {"movieId": 1,"categoryId": 1}                                                                                   |

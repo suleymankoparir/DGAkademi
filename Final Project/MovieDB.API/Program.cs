@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MovieDB.API.Filters;
+using MovieDB.API.Middlewares;
 using MovieDB.API.Modules;
 using MovieDB.Repository;
 using MovieDB.Service.Mapping;
@@ -128,6 +129,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCustomException();
 
 app.UseAuthentication();
 
